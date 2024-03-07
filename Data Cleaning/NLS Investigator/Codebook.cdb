@@ -1,0 +1,1965 @@
+R00001.00    [PUBID]                                        Survey Year: 1997
+  PRIMARY VARIABLE
+
+ 
+             PUBID, YOUTH CASE IDENTIFICATION CODE
+ 
+COMMENT: YOUTH CASE IDENTIFICATION CODE
+ 
+       0           0
+     998           1 TO 999
+     999        1000 TO 1999
+     997        2000 TO 2999
+     996        3000 TO 3999
+     998        4000 TO 4999
+     996        5000 TO 5999
+     994        6000 TO 6999
+     994        7000 TO 7999
+     989        8000 TO 8999
+      23        9000 TO 9999
+  -------
+    8984
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    8984   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:           9022        Mean:              4504.3
+ 
+Lead In: R72976.00[Default]
+Default Next Question: R05363.00
+--------------------------------------------------------------------------------
+R05363.00    [KEY!SEX]                                      Survey Year: 1997
+  PRIMARY VARIABLE
+
+ 
+             KEY!SEX, RS SEX (SYMBOL)
+ 
+COMMENT: Sex of Youth
+ 
+    4599       1 Male
+    4385       2 Female
+       0       0 No Information
+  -------
+    8984
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    8984   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:              2        Mean:                1.49
+ 
+Lead In: R00001.00[Default]
+Default Next Question: R05364.00
+--------------------------------------------------------------------------------
+R05364.01    [KEY!BDATE_M]                                  Survey Year: 1997
+  PRIMARY VARIABLE
+
+ 
+             KEY!BDATE, RS BIRTHDATE MONTH/YEAR (SYMBOL)
+ 
+COMMENT: Birthdate of Youth
+ 
+     816           1: January
+     693           2: February
+     760           3: March
+     659           4: April
+     689           5: May
+     720           6: June
+     762           7: July
+     782           8: August
+     839           9: September
+     765          10: October
+     763          11: November
+     736          12: December
+  -------
+    8984
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    8984   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:             12        Mean:                6.56
+ 
+Earliest (NonMissing): JANUARY/1980
+Latest   (NonMissing): DECEMBER/1984
+ 
+Lead In: None.
+Default Next Question: R05364.02
+--------------------------------------------------------------------------------
+R05364.02    [KEY!BDATE_Y]                                  Survey Year: 1997
+  PRIMARY VARIABLE
+
+ 
+             KEY!BDATE, RS BIRTHDATE MONTH/YEAR (SYMBOL)
+ 
+COMMENT: Birthdate of Youth
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    8984   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:           1980        Max:           1984        Mean:             1982.01
+ 
+Earliest (NonMissing): JANUARY/1980
+Latest   (NonMissing): DECEMBER/1984
+ 
+Lead In: R05364.01[Default]
+Default Next Question: R05366.00
+--------------------------------------------------------------------------------
+R12045.00    [CV_INCOME_GROSS_YR]                           Survey Year: 1997
+  PRIMARY VARIABLE
+
+ 
+             GROSS HH INCOME IN PAST YEAR
+ 
+Gross household income in the previous year.
+ 
+NOTE: /*Topcoded at the 2% level.  Truncated values are applied to the top 2 
+percent of respondents with valid non-missing responses.  The average value of 
+the top 2 percent of cases is used as the value.  Negative values of -1, -2, -3,
+-4, or -5 do not reflect negative monetary amounts; these numbers represent 
+standard NLSY97 codes.*/
+ 
+       3     -999999 TO -3000: < -2999
+       0       -2999 TO -2000
+       0       -1999 TO -1000
+       0        -999 TO -1
+     100           0
+      71           1 TO 1000
+      41        1001 TO 2000
+      98        2001 TO 3000
+     139        3001 TO 5000
+     465        5001 TO 10000
+     925       10001 TO 20000
+     819       20001 TO 30000
+     835       30001 TO 40000
+     765       40001 TO 50000
+     834       50001 TO 65000
+     610       65001 TO 80000
+     397       80001 TO 100000
+     321      100001 TO 150000
+      32      150001 TO 200000
+     133      200001 TO 999999: 200001+
+  -------
+    6588
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)    1458
+TOTAL =========>    8046   VALID SKIP(-4)     938     NON-INTERVIEW(-5)       0
+ 
+Min:         -48100        Max:         246474        Mean:             46361.7
+ 
+Lead In: R13027.00[Default]
+Default Next Question: R12046.00
+--------------------------------------------------------------------------------
+R12047.00    [CV_HH_NET_WORTH_P]                            Survey Year: 1997
+  PRIMARY VARIABLE
+
+ 
+             NET WORTH OF HOUSEHOLD ACCORDING TO PARENT
+ 
+Household net worth.
+ 
+COMMENT: from parent interview
+ 
+NOTE: /*Topcoded at predetermined values.  Respondents with household net worth 
+values above $600,000 were topcoded to a value of $600,000.  Negative values of 
+-1, -2, -3, -4, or -5 do not reflect negative monetary amounts; these numbers 
+represent standard NLSY97 codes.*/
+ 
+     286     -999999 TO -3000: < -2999
+      37       -2999 TO -2000
+      56       -1999 TO -1000
+      47        -999 TO -6
+       3           0
+     313           1 TO 1000
+     273        1001 TO 2000
+     160        2001 TO 3000
+     426        3001 TO 5000
+     507        5001 TO 10000
+     602       10001 TO 20000
+     435       20001 TO 30000
+     334       30001 TO 40000
+     285       40001 TO 50000
+     393       50001 TO 65000
+     304       65001 TO 80000
+     321       80001 TO 100000
+     567      100001 TO 150000
+     350      150001 TO 200000
+     677      200001 TO 500000
+     243      500001 TO 1000000
+       0     1000001 TO 1500000
+       0     1500001 TO 2000000
+       0     2000001 TO 999999999: 2000001+
+  -------
+    6619
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)    1314
+TOTAL =========>    7933   VALID SKIP(-4)    1051     NON-INTERVIEW(-5)       0
+ 
+Min:        -935251        Max:         600000        Mean:            90180.98
+ 
+Lead In: R12046.00[Default]
+Default Next Question: R12048.00
+--------------------------------------------------------------------------------
+R12358.00    [CV_SAMPLE_TYPE]                               Survey Year: 1997
+  PRIMARY VARIABLE
+
+ 
+             SAMPLE TYPE.  CROSS-SECTIONAL OR OVERSAMPLE
+ 
+Sample type: Is the respondent a member of the cross-sectional sample or the 
+oversample?
+ 
+    6748       1 Cross-sectional
+    2236       0 Oversample
+  -------
+    8984
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    8984   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              0        Max:              1        Mean:                 .75
+ 
+Lead In: R12338.00[Default]
+Default Next Question: R12359.00
+--------------------------------------------------------------------------------
+R13026.00    [CV_HGC_RES_DAD]                               Survey Year: 1997
+  PRIMARY VARIABLE
+
+ 
+             RESIDENTIAL FATHERS HIGHEST GRADE COMPLETED
+ 
+Highest grade completed by respondent's residential father (includes both 
+biological and non-biological fathers).
+ 
+       0       0 NONE
+       1       1 1ST GRADE
+      12       2 2ND GRADE
+      51       3 3RD GRADE
+      56       4 4TH GRADE
+      51       5 5TH GRADE
+     150       6 6TH GRADE
+      69       7 7TH GRADE
+     117       8 8TH GRADE
+     186       9 9TH GRADE
+     195      10 10TH GRADE
+     277      11 11TH GRADE
+    1917      12 12TH GRADE
+     345      13 1ST YEAR COLLEGE
+     720      14 2ND YEAR COLLEGE
+     164      15 3RD YEAR COLLEGE
+     780      16 4TH YEAR COLLEGE
+     119      17 5TH YEAR COLLEGE
+     255      18 6TH YEAR COLLEGE
+      86      19 7TH YEAR COLLEGE
+     153      20 8TH YEAR COLLEGE OR MORE
+       3      95 UNGRADED
+  -------
+    5707
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)     367
+TOTAL =========>    6074   VALID SKIP(-4)    2910     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:             95        Mean:               12.92
+ 
+Lead In: R13025.00[Default]
+Default Next Question: R13027.00
+--------------------------------------------------------------------------------
+R13027.00    [CV_HGC_RES_MOM]                               Survey Year: 1997
+  PRIMARY VARIABLE
+
+ 
+             RESIDENTIAL MOTHERS HIGHEST GRADE COMPLETED
+ 
+Highest grade completed by respondent's residential mother (includes both 
+biological and non-biological mothers).
+ 
+       0       0 NONE
+       3       1 1ST GRADE
+      28       2 2ND GRADE
+      51       3 3RD GRADE
+      54       4 4TH GRADE
+      54       5 5TH GRADE
+     221       6 6TH GRADE
+      67       7 7TH GRADE
+     183       8 8TH GRADE
+     260       9 9TH GRADE
+     373      10 10TH GRADE
+     517      11 11TH GRADE
+    2870      12 12TH GRADE
+     639      13 1ST YEAR COLLEGE
+     996      14 2ND YEAR COLLEGE
+     251      15 3RD YEAR COLLEGE
+     902      16 4TH YEAR COLLEGE
+     163      17 5TH YEAR COLLEGE
+     246      18 6TH YEAR COLLEGE
+      38      19 7TH YEAR COLLEGE
+      89      20 8TH YEAR COLLEGE OR MORE
+       5      95 UNGRADED
+  -------
+    8010
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)     316
+TOTAL =========>    8326   VALID SKIP(-4)     658     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:             95        Mean:               12.58
+ 
+Lead In: R13026.00[Default]
+Default Next Question: R12045.00
+--------------------------------------------------------------------------------
+R14826.00    [KEY!RACE_ETHNICITY]                           Survey Year: 1997
+  PRIMARY VARIABLE
+
+ 
+             KEY!RACE_ETHNICITY, COMBINED RACE AND ETHNICITY (SYMBOL)
+ 
+COMMENT: Combined race - ethnicity variable
+ 
+    2335       1 Black
+    1901       2 Hispanic
+      83       3 Mixed Race (Non-Hispanic)
+    4665       4 Non-Black / Non-Hispanic
+  -------
+    8984
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    8984   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:              4        Mean:                2.79
+ 
+Lead In: R05387.00[Default]
+Default Next Question: R05389.00
+--------------------------------------------------------------------------------
+R14897.00    [VSTRAT]                                       Survey Year: 1997
+  PRIMARY VARIABLE
+
+ 
+             VARIANCE STRATUM
+ 
+Variable for use with variance PSU to correct for clustering in the sample 
+design.
+ 
+The stratum reflects the first-stage units for the initial sampling of NLSY97 
+respondents. This variable should be used in conjunction with VPSU.
+ 
+       0           0
+     935           1 TO 9
+    1178          10 TO 19
+    1143          20 TO 29
+    1056          30 TO 39
+    1161          40 TO 49
+     622          50 TO 59
+     826          60 TO 69
+     378          70 TO 79
+     423          80 TO 89
+     508          90 TO 99
+     390         100 TO 109
+     364         110 TO 119
+       0         120 TO 99999999: 120+
+  -------
+    8984
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    8984   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:            117        Mean:               46.56
+ 
+Lead In: R13183.00[Default]
+Default Next Question: R14898.00
+--------------------------------------------------------------------------------
+R14898.00    [VPSU]                                         Survey Year: 1997
+  PRIMARY VARIABLE
+
+ 
+             VARIANCE PSU
+ 
+Variable for use with variance stratum to correct for clustering in the sample 
+design.
+ 
+The VPSU reflects the second-stage units for the initial sampling of NLSY97 
+respondents. There are two second-stage units (VPSU) for each first-stage unit 
+(VSTRAT). This variable should be used in conjunction with VSTRAT.
+ 
+    4585           1
+    4399           2
+  -------
+    8984
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    8984   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:              2        Mean:                1.49
+ 
+Lead In: R14897.00[Default]
+Default Next Question: R12506.00
+--------------------------------------------------------------------------------
+S31718.00    [YAST-5016]                                    Survey Year: 2003
+  PRIMARY VARIABLE
+
+ 
+             TOTAL AMT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+(ENTER AMOUNT)
+ 
+UNIVERSE: R reported government college loans; reports amount of loans
+ 
+      12           0
+       3           1 TO 999
+      11        1000 TO 1999
+      18        2000 TO 2999
+      15        3000 TO 3999
+      16        4000 TO 4999
+      12        5000 TO 5999
+      15        6000 TO 6999
+      13        7000 TO 7999
+      10        8000 TO 8999
+       8        9000 TO 9999
+      23       10000 TO 14999
+      14       15000 TO 19999
+      11       20000 TO 24999
+      16       25000 TO 49999
+       2       50000 TO 99999999: 50000+
+  -------
+     199
+ 
+Refusal(-1)            0   (Go To S31719.00)
+Don't Know(-2)        21   (Go To S31719.00)
+TOTAL =========>     220   VALID SKIP(-4)    7534     NON-INTERVIEW(-5)    1230
+ 
+Min:              0        Max:          65000        Mean:             9343.34
+ 
+Lead In: S31717.00[1:1]
+Default Next Question: S31720.00
+--------------------------------------------------------------------------------
+S31719.00    [YAST-5018]                                    Survey Year: 2003
+  PRIMARY VARIABLE
+
+ 
+             ESTIMATED AMOUNT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+(HAND R SHOWCARD GG)
+ 
+Please look at this card. Can you tell me the letter of the category that is 
+your best estimate of that amount?
+ 
+UNIVERSE: R reported government college loans; reports amount of loans; DK/RF to
+report how much owes
+ 
+       0       1 A. $1              -        $1,000
+       3       2 B.  $1,001      -       $2,500
+       6       3 C.  $2,501      -       $5,000
+       3       4 D.  $5,001      -     $10,000
+       3       5 E.   $10,001    -     $25,000
+       1       6 F.   $25,001    -     $50,000
+       1       7 G.   More than   $50,000
+  -------
+      17
+ 
+Refusal(-1)            0
+Don't Know(-2)         4
+TOTAL =========>      21   VALID SKIP(-4)    7733     NON-INTERVIEW(-5)    1230
+ 
+Min:              2        Max:              7        Mean:                3.76
+ 
+Lead In: S31718.00[-2:-1]
+Default Next Question: S31720.00
+--------------------------------------------------------------------------------
+S48293.00    [YAST-5016]                                    Survey Year: 2004
+  PRIMARY VARIABLE
+
+ 
+             TOTAL AMT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+(ENTER AMOUNT)
+ 
+UNIVERSE: R reported government college loans; reports amount of loans
+ 
+      15           0
+       2           1 TO 999
+      15        1000 TO 1999
+      13        2000 TO 2999
+       8        3000 TO 3999
+       8        4000 TO 4999
+      11        5000 TO 5999
+      15        6000 TO 6999
+      11        7000 TO 7999
+       8        8000 TO 8999
+       6        9000 TO 9999
+      32       10000 TO 14999
+       8       15000 TO 19999
+       9       20000 TO 24999
+      10       25000 TO 49999
+       3       50000 TO 99999999: 50000+
+  -------
+     174
+ 
+Refusal(-1)            0   (Go To S48294.00)
+Don't Know(-2)         9   (Go To S48294.00)
+TOTAL =========>     183   VALID SKIP(-4)    7319     NON-INTERVIEW(-5)    1482
+ 
+Min:              0        Max:          90000        Mean:             9351.81
+ 
+Lead In: S48292.00[1:1]
+Default Next Question: S48295.00
+--------------------------------------------------------------------------------
+S48294.00    [YAST-5018]                                    Survey Year: 2004
+  PRIMARY VARIABLE
+
+ 
+             ESTIMATED AMOUNT OWED ON GOVERNMENT LOANS
+ 
+(HAND R SHOWCARD GG)
+ 
+Please look at this card. Can you tell me the letter of the category that is 
+your best estimate of that amount?
+ 
+UNIVERSE: R reported government college loans; reports amount of loans; DK/RF to
+report how much owes
+ 
+       0       1 A. $1              -        $1,000
+       2       2 B.  $1,001      -       $2,500
+       2       3 C.  $2,501      -       $5,000
+       7       4 D.  $5,001      -     $10,000
+      13       5 E.   $10,001    -     $25,000
+       4       6 F.   $25,001    -     $50,000
+       1       7 G.   More than   $50,000
+  -------
+      29
+ 
+Refusal(-1)            0
+Don't Know(-2)        15
+TOTAL =========>      44   VALID SKIP(-4)    7458     NON-INTERVIEW(-5)    1482
+ 
+Min:              2        Max:              7        Mean:                4.62
+ 
+Lead In: S48292.00[Default]  S48293.00[-2:-1]
+Default Next Question: S48295.00
+--------------------------------------------------------------------------------
+S65236.00    [YAST-5016]                                    Survey Year: 2005
+  PRIMARY VARIABLE
+
+ 
+             TOTAL AMT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+(ENTER AMOUNT)
+ 
+UNIVERSE: R reported government college loans; reports amount of loans
+ 
+       1           0
+       0           1 TO 999
+       2        1000 TO 1999
+       2        2000 TO 2999
+       0        3000 TO 3999
+       0        4000 TO 4999
+       2        5000 TO 5999
+       1        6000 TO 6999
+       0        7000 TO 7999
+       0        8000 TO 8999
+       0        9000 TO 9999
+       1       10000 TO 14999
+       1       15000 TO 19999
+       2       20000 TO 24999
+       1       25000 TO 49999
+       1       50000 TO 99999999: 50000+
+  -------
+      14
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>      14   VALID SKIP(-4)    7324     NON-INTERVIEW(-5)    1646
+ 
+Min:              0        Max:         100000        Mean:            16428.57
+ 
+Lead In: S65235.00[1:1]
+Default Next Question: S65238.00
+--------------------------------------------------------------------------------
+S65237.00    [YAST-5018]                                    Survey Year: 2005
+  PRIMARY VARIABLE
+
+ 
+             ESTIMATED AMOUNT OWED ON GOVERNMENT LOANS
+ 
+(HAND R SHOWCARD GG)  Please look at this card. Can you tell me the letter of 
+the category that is your best estimate of that amount?
+ 
+UNIVERSE: R reported government college loans; reports amount of loans; DK/RF to
+report how much owes
+ 
+       0       1 A. $1              -        $1,000
+       0       2 B.  $1,001      -       $2,500
+       0       3 C.  $2,501      -       $5,000
+       0       4 D.  $5,001      -     $10,000
+       0       5 E.   $10,001    -     $25,000
+       0       6 F.   $25,001    -     $50,000
+       0       7 G.   More than   $50,000
+  -------
+       0
+ 
+Refusal(-1)            1
+Don't Know(-2)         1
+TOTAL =========>       2   VALID SKIP(-4)    7336     NON-INTERVIEW(-5)    1646
+ 
+Min:        Max:        Mean:
+ 
+Lead In: S65235.00[Default]
+Default Next Question: S65238.00
+--------------------------------------------------------------------------------
+S85209.00    [YAST-5016]                                    Survey Year: 2006
+  PRIMARY VARIABLE
+
+ 
+             TOTAL AMT OWED ON GOVERNMENT LOANS
+ 
+(ENTER AMOUNT)
+ 
+UNIVERSE: R not yet age-eligible for Assets25 section who turned 20 since DLI; 
+reported government college loans; reports amount of loans
+ 
+NOTE: Truncated values are applied to the top 2 percent of respondents with 
+valid non-missing responses.  The lowest value for the top 2 percent of cases is
+used as the truncation level ($68,333 for this variable).  Values for all cases 
+at or over that level are averaged. That average is then assigned to each of the
+top 2 percent of the cases.
+ 
+       1           0
+       0           1 TO 999
+       0        1000 TO 1999
+       2        2000 TO 2999
+       1        3000 TO 3999
+       0        4000 TO 4999
+       0        5000 TO 5999
+       0        6000 TO 6999
+       0        7000 TO 7999
+       1        8000 TO 8999
+       0        9000 TO 9999
+       1       10000 TO 14999
+       1       15000 TO 19999
+       0       20000 TO 24999
+       2       25000 TO 49999
+       0       50000 TO 99999999: 50000+
+  -------
+       9
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>       9   VALID SKIP(-4)    7550     NON-INTERVIEW(-5)    1425
+ 
+Min:              0        Max:          30000        Mean:            11311.11
+ 
+Lead In: S85208.00[Default]
+Default Next Question: S85210.00
+--------------------------------------------------------------------------------
+T09103.00    [YAST-5016]                                    Survey Year: 2007
+  PRIMARY VARIABLE
+
+ 
+             TOTAL AMT OWED ON GOVERNMENT LOANS
+ 
+(ENTER AMOUNT)
+ 
+UNIVERSE: R not yet age-eligible for Assets25 section who turned 20 since DLI; 
+reported government college loans; reports amount of loans
+ 
+NOTE: Truncated values are applied to the top 2 percent of respondents with 
+valid non-missing responses.  The lowest value for the top 2 percent of cases is
+used as the truncation level ($68,333 for this variable).  Values for all cases 
+at or over that level are averaged. That average is then assigned to each of the
+top 2 percent of the cases.
+ 
+       0           0
+       0           1 TO 999
+       0        1000 TO 1999
+       0        2000 TO 2999
+       0        3000 TO 3999
+       0        4000 TO 4999
+       0        5000 TO 5999
+       0        6000 TO 6999
+       0        7000 TO 7999
+       0        8000 TO 8999
+       0        9000 TO 9999
+       0       10000 TO 14999
+       0       15000 TO 19999
+       0       20000 TO 24999
+       1       25000 TO 49999
+       0       50000 TO 99999999: 50000+
+  -------
+       1
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>       1   VALID SKIP(-4)    7417     NON-INTERVIEW(-5)    1566
+ 
+Min:          40000        Max:          40000        Mean:               40000
+ 
+Lead In: T09102.00[Default]
+Default Next Question: T09104.00
+--------------------------------------------------------------------------------
+T14124.00    [YAST-5017~000001]                             Survey Year: 2003
+  PRIMARY VARIABLE
+
+ 
+             ENTER LOWER RANGE AMOUNT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+(READ IF NECESSARY) What is the lower amount of the range? What is the upper 
+amount of the range?
+ 
+ 
+        Lower amount
+ 
+       0           0
+       1           1 TO 999
+       0        1000 TO 1999
+       1        2000 TO 2999
+       1        3000 TO 3999
+       1        4000 TO 4999
+       1        5000 TO 5999
+       2        6000 TO 6999
+       1        7000 TO 7999
+       0        8000 TO 8999
+       0        9000 TO 9999
+       5       10000 TO 14999
+       0       15000 TO 19999
+       0       20000 TO 24999
+       1       25000 TO 49999
+       0       50000 TO 99999999: 50000+
+  -------
+      14
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>      14   VALID SKIP(-4)    7740     NON-INTERVIEW(-5)    1230
+ 
+Min:            100        Max:          25000        Mean:             7757.14
+ 
+Lead In: None.
+Default Next Question: T14125.00
+--------------------------------------------------------------------------------
+T14125.00    [YAST-5017~000002]                             Survey Year: 2003
+  PRIMARY VARIABLE
+
+ 
+             ENTER UPPER RANGE AMOUNT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+ 
+ 
+        Upper amount
+ 
+       0           0
+       1           1 TO 999
+       0        1000 TO 1999
+       0        2000 TO 2999
+       1        3000 TO 3999
+       1        4000 TO 4999
+       1        5000 TO 5999
+       0        6000 TO 6999
+       1        7000 TO 7999
+       1        8000 TO 8999
+       1        9000 TO 9999
+       2       10000 TO 14999
+       3       15000 TO 19999
+       1       20000 TO 24999
+       1       25000 TO 49999
+       0       50000 TO 99999999: 50000+
+  -------
+      14
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>      14   VALID SKIP(-4)    7740     NON-INTERVIEW(-5)    1230
+ 
+Min:            500        Max:          30000        Mean:            11142.86
+ 
+Lead In: T14124.00[Default]
+Default Next Question: S31720.00
+--------------------------------------------------------------------------------
+T14128.00    [YAST-5017_000001]                             Survey Year: 2004
+  PRIMARY VARIABLE
+
+ 
+             ENTER LOWER RANGE AMOUNT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+(READ IF NECESSARY) What is the lower amount of the range? What is the upper 
+amount of the range?
+ 
+ 
+        Lower amount
+ 
+       0           0
+       0           1 TO 999
+       2        1000 TO 1999
+       0        2000 TO 2999
+       1        3000 TO 3999
+       3        4000 TO 4999
+       0        5000 TO 5999
+       0        6000 TO 6999
+       0        7000 TO 7999
+       0        8000 TO 8999
+       0        9000 TO 9999
+       3       10000 TO 14999
+       1       15000 TO 19999
+       0       20000 TO 24999
+       0       25000 TO 49999
+       0       50000 TO 99999999: 50000+
+  -------
+      10
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>      10   VALID SKIP(-4)    7492     NON-INTERVIEW(-5)    1482
+ 
+Min:           1000        Max:          15000        Mean:                6400
+ 
+Lead In: S48292.00[2:2]
+Default Next Question: T14129.00
+--------------------------------------------------------------------------------
+T14129.00    [YAST-5017_000002]                             Survey Year: 2004
+  PRIMARY VARIABLE
+
+ 
+             ENTER UPPER RANGE AMOUNT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+ 
+ 
+        Upper amount
+ 
+       0           0
+       0           1 TO 999
+       0        1000 TO 1999
+       0        2000 TO 2999
+       0        3000 TO 3999
+       2        4000 TO 4999
+       1        5000 TO 5999
+       1        6000 TO 6999
+       0        7000 TO 7999
+       0        8000 TO 8999
+       0        9000 TO 9999
+       1       10000 TO 14999
+       3       15000 TO 19999
+       1       20000 TO 24999
+       1       25000 TO 49999
+       0       50000 TO 99999999: 50000+
+  -------
+      10
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>      10   VALID SKIP(-4)    7492     NON-INTERVIEW(-5)    1482
+ 
+Min:           4000        Max:          40000        Mean:               13650
+ 
+Lead In: T14128.00[Default]
+Default Next Question: S48295.00
+--------------------------------------------------------------------------------
+T14130.00    [YAST-5017_000001]                             Survey Year: 2005
+  PRIMARY VARIABLE
+
+ 
+             ENTER LOWER RANGE AMOUNT OWED ON GOVERNMENT EDUCATONAL LOANS
+ 
+(READ IF NECESSARY) What is the lower amount of the range? What is the upper 
+amount of the range?
+ 
+ 
+        Lower amount
+ 
+       0           0
+       0           1 TO 999
+       0        1000 TO 1999
+       0        2000 TO 2999
+       0        3000 TO 3999
+       0        4000 TO 4999
+       0        5000 TO 5999
+       0        6000 TO 6999
+       0        7000 TO 7999
+       0        8000 TO 8999
+       0        9000 TO 9999
+       0       10000 TO 14999
+       0       15000 TO 19999
+       0       20000 TO 24999
+       1       25000 TO 49999
+       0       50000 TO 99999999: 50000+
+  -------
+       1
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>       1   VALID SKIP(-4)    7337     NON-INTERVIEW(-5)    1646
+ 
+Min:          40000        Max:          40000        Mean:               40000
+ 
+Lead In: S65235.00[2:2]
+Default Next Question: T14131.00
+--------------------------------------------------------------------------------
+T14131.00    [YAST-5017_000002]                             Survey Year: 2005
+  PRIMARY VARIABLE
+
+ 
+             ENTER UPPER RANGE AMOUNT OWED ON GOVERNMENT EDUCATONAL LOANS
+ 
+ 
+ 
+        Upper amount
+ 
+       0           0
+       0           1 TO 999
+       0        1000 TO 1999
+       0        2000 TO 2999
+       0        3000 TO 3999
+       0        4000 TO 4999
+       0        5000 TO 5999
+       0        6000 TO 6999
+       0        7000 TO 7999
+       0        8000 TO 8999
+       0        9000 TO 9999
+       0       10000 TO 14999
+       0       15000 TO 19999
+       0       20000 TO 24999
+       0       25000 TO 49999
+       1       50000 TO 99999999: 50000+
+  -------
+       1
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>       1   VALID SKIP(-4)    7337     NON-INTERVIEW(-5)    1646
+ 
+Min:          50000        Max:          50000        Mean:               50000
+ 
+Lead In: T14130.00[Default]
+Default Next Question: S65238.00
+--------------------------------------------------------------------------------
+Z04153.00    [YAST25-5016_COMB]                             Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             ENTER AMOUNT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+(ENTER AMOUNT)
+ 
+UNIVERSE: Reported government college loans; reports amount of loans
+ 
+     219           0
+      29           1 TO 999
+      63        1000 TO 1999
+      58        2000 TO 2999
+      56        3000 TO 3999
+      51        4000 TO 4999
+      72        5000 TO 5999
+      54        6000 TO 6999
+      61        7000 TO 7999
+      49        8000 TO 8999
+      36        9000 TO 9999
+     274       10000 TO 14999
+     210       15000 TO 19999
+     188       20000 TO 24999
+     341       25000 TO 49999
+     149       50000 TO 99999999: 50000+
+  -------
+    1910
+ 
+Refusal(-1)            2   (Go To Z04156.00)
+Don't Know(-2)        74   (Go To Z04156.00)
+TOTAL =========>    1986   VALID SKIP(-4)    6998     NON-INTERVIEW(-5)       0
+ 
+Min:              0        Max:         250000        Mean:            18521.21
+ 
+Lead In: Z04152.00[1:1]
+Default Next Question: Z04157.00
+--------------------------------------------------------------------------------
+Z04154.00    [YAST25-5017_000001_COMB]                      Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             ENTER LOWER RANGE AMOUNT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+(READ IF NECESSARY) What is the lower amount of the range? What is the upper 
+amount of the range?
+ 
+UNIVERSE: Reported government college loans; reports lower range of how much 
+owes on loans
+ 
+ 
+        Lower amount
+ 
+       3           0
+       0           1 TO 999
+       1        1000 TO 1999
+       1        2000 TO 2999
+       2        3000 TO 3999
+       0        4000 TO 4999
+       4        5000 TO 5999
+       2        6000 TO 6999
+       1        7000 TO 7999
+       1        8000 TO 8999
+       1        9000 TO 9999
+       7       10000 TO 14999
+       3       15000 TO 19999
+       2       20000 TO 24999
+       2       25000 TO 49999
+       4       50000 TO 99999999: 50000+
+  -------
+      34
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>      34   VALID SKIP(-4)    8950     NON-INTERVIEW(-5)       0
+ 
+Min:              0        Max:         100000        Mean:            16102.97
+ 
+Lead In: Z04152.00[2:2]
+Default Next Question: Z04155.00
+--------------------------------------------------------------------------------
+Z04155.00    [YAST25-5017_000002_COMB]                      Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             ENTER UPPER RANGE AMOUNT OWED ON GOVERNMENT EDUCATONAL LOANS
+ 
+UNIVERSE: Reported government college loans; reports upper range of how much 
+owes on loans
+ 
+ 
+        Upper amount
+ 
+       1           0
+       1           1 TO 999
+       1        1000 TO 1999
+       0        2000 TO 2999
+       0        3000 TO 3999
+       0        4000 TO 4999
+       3        5000 TO 5999
+       0        6000 TO 6999
+       0        7000 TO 7999
+       4        8000 TO 8999
+       0        9000 TO 9999
+       7       10000 TO 14999
+       2       15000 TO 19999
+       5       20000 TO 24999
+       5       25000 TO 49999
+       5       50000 TO 99999999: 50000+
+  -------
+      34
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>      34   VALID SKIP(-4)    8950     NON-INTERVIEW(-5)       0
+ 
+Min:              0        Max:         125000        Mean:            24170.59
+ 
+Lead In: Z04154.00[Default]
+Default Next Question: Z04157.00
+--------------------------------------------------------------------------------
+Z04156.00    [YAST25-5018_COMB]                             Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             ESTIMATED AMOUNT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+(HAND R SHOWCARD II)  Please look at this card. Can you tell me the letter of 
+the category that is your best estimate of that amount?
+ 
+UNIVERSE: Reported government college loans; reports amount of loans; DK/RF to 
+report how much owes
+ 
+       5       1 A. $1 - $1,000
+       7       2 B. $1,001 - $2,500
+      17       3 C. $2,501 - $5,000
+      33       4 D. $5,001 - $10,000
+      25       5 E. $10,001 - $25,000
+      18       6 F. $25,001 - $50,000
+       6       7 G. $50,001 - $100,000
+       0       8 H. More than $100,000
+  -------
+     111
+ 
+Refusal(-1)           10
+Don't Know(-2)        31
+TOTAL =========>     152   VALID SKIP(-4)    8832     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:              7        Mean:                 4.3
+ 
+Lead In: Z04152.00[Default]  Z04153.00[-2:-1]
+Default Next Question: Z04157.00
+--------------------------------------------------------------------------------
+Z05197.00    [YAST30-5016_COMB]                             Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             ENTER AMOUNT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+(ENTER AMOUNT)
+ 
+UNIVERSE: Reported government college loans; reports amount of loans
+ 
+     511           0
+      26           1 TO 999
+      60        1000 TO 1999
+      62        2000 TO 2999
+      68        3000 TO 3999
+      51        4000 TO 4999
+      74        5000 TO 5999
+      60        6000 TO 6999
+      55        7000 TO 7999
+      55        8000 TO 8999
+      54        9000 TO 9999
+     254       10000 TO 14999
+     161       15000 TO 19999
+     175       20000 TO 24999
+     457       25000 TO 49999
+     302       50000 TO 99999999: 50000+
+  -------
+    2425
+ 
+Refusal(-1)            2   (Go To Z05200.00)
+Don't Know(-2)        60   (Go To Z05200.00)
+TOTAL =========>    2487   VALID SKIP(-4)    6497     NON-INTERVIEW(-5)       0
+ 
+Min:              0        Max:         350000        Mean:            21628.13
+ 
+Lead In: Z05196.00[1:1]
+Default Next Question: Z05201.00
+--------------------------------------------------------------------------------
+Z05198.00    [YAST30-5017_000001_COMB]                      Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             ENTER LOWER RANGE AMOUNT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+(READ IF NECESSARY) What is the lower amount of the range? What is the upper 
+amount of the range?
+ 
+UNIVERSE: Reported government college loans; reports range of how much owes on 
+loans
+ 
+ 
+        Lower amount
+ 
+       0           0
+       0           1 TO 999
+       1        1000 TO 1999
+       1        2000 TO 2999
+       0        3000 TO 3999
+       0        4000 TO 4999
+       2        5000 TO 5999
+       2        6000 TO 6999
+       1        7000 TO 7999
+       1        8000 TO 8999
+       0        9000 TO 9999
+       3       10000 TO 14999
+       3       15000 TO 19999
+       4       20000 TO 24999
+       4       25000 TO 49999
+       6       50000 TO 99999999: 50000+
+  -------
+      28
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>      28   VALID SKIP(-4)    8956     NON-INTERVIEW(-5)       0
+ 
+Min:           1000        Max:         250000        Mean:            33035.71
+ 
+Lead In: Z05196.00[2:2]
+Default Next Question: Z05199.00
+--------------------------------------------------------------------------------
+Z05199.00    [YAST30-5017_000002_COMB]                      Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             ENTER UPPER RANGE AMOUNT OWED ON GOVERNMENT EDUCATONAL LOANS
+ 
+UNIVERSE: Reported government college loans; reports range of how much owes on 
+loans
+ 
+ 
+        Upper amount
+ 
+       0           0
+       0           1 TO 999
+       0        1000 TO 1999
+       1        2000 TO 2999
+       0        3000 TO 3999
+       1        4000 TO 4999
+       0        5000 TO 5999
+       0        6000 TO 6999
+       1        7000 TO 7999
+       2        8000 TO 8999
+       0        9000 TO 9999
+       4       10000 TO 14999
+       2       15000 TO 19999
+       2       20000 TO 24999
+       8       25000 TO 49999
+       7       50000 TO 99999999: 50000+
+  -------
+      28
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>      28   VALID SKIP(-4)    8956     NON-INTERVIEW(-5)       0
+ 
+Min:           2000        Max:         300000        Mean:            43714.29
+ 
+Lead In: Z05198.00[Default]
+Default Next Question: Z05201.00
+--------------------------------------------------------------------------------
+Z05200.00    [YAST30-5018_COMB]                             Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             ESTIMATED AMOUNT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+(REFER TO SHOWCARD II)  [{INPERSONTEXTSUB}]
+ 
+Can you tell me the letter of the category that is your best estimate of that 
+amount?
+ 
+UNIVERSE: Reported government college loans; DK/RF to report how much owes
+ 
+       1       1 A. $1 - $1,000
+       7       2 B. $1,001 - $2,500
+       7       3 C. $2,501 - $5,000
+      16       4 D. $5,001 - $10,000
+      22       5 E. $10,001 - $25,000
+      21       6 F. $25,001 - $50,000
+       5       7 G. $50,001 - $100,000
+       2       8 H. More than $100,000
+  -------
+      81
+ 
+Refusal(-1)           20
+Don't Know(-2)        27
+TOTAL =========>     128   VALID SKIP(-4)    8856     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:              8        Mean:                4.78
+ 
+Lead In: Z05196.00[Default]  Z05197.00[-2:-1]
+Default Next Question: Z05201.00
+--------------------------------------------------------------------------------
+Z05548.00    [YAST35-5016_COMB]                             Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             ENTER AMOUNT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+(ENTER AMOUNT)
+ 
+UNIVERSE: Reported government college loans; reports amount of loans
+ 
+NOTE: Topcoded variable - All valid responses over $370,000 have been recoded to
+that value.
+ 
+     566           0
+      18           1 TO 999
+      27        1000 TO 1999
+      42        2000 TO 2999
+      41        3000 TO 3999
+      32        4000 TO 4999
+      64        5000 TO 5999
+      36        6000 TO 6999
+      28        7000 TO 7999
+      47        8000 TO 8999
+      36        9000 TO 9999
+     181       10000 TO 14999
+     125       15000 TO 19999
+     136       20000 TO 24999
+     409       25000 TO 49999
+     419       50000 TO 99999999: 50000+
+  -------
+    2207
+ 
+Refusal(-1)            3   (Go To Z05551.00)
+Don't Know(-2)        31   (Go To Z05551.00)
+TOTAL =========>    2241   VALID SKIP(-4)    6743     NON-INTERVIEW(-5)       0
+ 
+Min:              0        Max:         370000        Mean:            26521.26
+ 
+Lead In: Z05547.00[1:1]
+Default Next Question: Z05552.00
+--------------------------------------------------------------------------------
+Z05549.00    [YAST35-5017_000001_COMB]                      Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             ENTER LOWER RANGE AMOUNT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+(READ IF NECESSARY) What is the lower amount of the range? What is the upper 
+amount of the range?
+ 
+UNIVERSE: Reported government college loans; reports range of how much owes on 
+loans
+ 
+ 
+        Lower amount
+ 
+       0           0
+       1           1 TO 999
+       0        1000 TO 1999
+       0        2000 TO 2999
+       0        3000 TO 3999
+       0        4000 TO 4999
+       1        5000 TO 5999
+       0        6000 TO 6999
+       0        7000 TO 7999
+       1        8000 TO 8999
+       0        9000 TO 9999
+       1       10000 TO 14999
+       1       15000 TO 19999
+       1       20000 TO 24999
+       3       25000 TO 49999
+       4       50000 TO 99999999: 50000+
+  -------
+      13
+ 
+Refusal(-1)            0
+Don't Know(-2)         1
+TOTAL =========>      14   VALID SKIP(-4)    8970     NON-INTERVIEW(-5)       0
+ 
+Min:            700        Max:         100000        Mean:            33361.54
+ 
+Lead In: Z05547.00[2:2]
+Default Next Question: Z05550.00
+--------------------------------------------------------------------------------
+Z05550.00    [YAST35-5017_000002_COMB]                      Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             ENTER UPPER RANGE AMOUNT OWED ON GOVERNMENT EDUCATONAL LOANS
+ 
+UNIVERSE: Reported government college loans; reports range of how much owes on 
+loans
+ 
+ 
+        Upper amount
+ 
+       0           0
+       1           1 TO 999
+       0        1000 TO 1999
+       0        2000 TO 2999
+       0        3000 TO 3999
+       0        4000 TO 4999
+       0        5000 TO 5999
+       0        6000 TO 6999
+       0        7000 TO 7999
+       0        8000 TO 8999
+       0        9000 TO 9999
+       1       10000 TO 14999
+       2       15000 TO 19999
+       1       20000 TO 24999
+       1       25000 TO 49999
+       6       50000 TO 99999999: 50000+
+  -------
+      12
+ 
+Refusal(-1)            0
+Don't Know(-2)         2
+TOTAL =========>      14   VALID SKIP(-4)    8970     NON-INTERVIEW(-5)       0
+ 
+Min:            900        Max:         150000        Mean:               46825
+ 
+Lead In: Z05549.00[Default]
+Default Next Question: Z05552.00
+--------------------------------------------------------------------------------
+Z05551.00    [YAST35-5018_COMB]                             Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             ESTIMATED AMOUNT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+(REFER TO SHOWCARD II)  [{INPERSONTEXTSUB}]  Can you tell me the letter of the 
+category that is your best estimate of that amount?  (IF SHOWCARDS ARE NOT BEING
+USED, ADD THE FIRST TIME AND LATER AS NECESSARY: I will read the categories in 
+order. Please stop me when I reach the correct one.)
+ 
+UNIVERSE: Reported government college loans; DK/RF to report how much owes
+ 
+       2       1 A. $1 - $1,000
+       3       2 B. $1,001 - $2,500
+       5       3 C. $2,501 - $5,000
+       9       4 D. $5,001 - $10,000
+      12       5 E. $10,001 - $25,000
+      11       6 F. $25,001 - $50,000
+       4       7 G. $50,001 - $100,000
+       4       8 H. More than $100,000
+  -------
+      50
+ 
+Refusal(-1)           21
+Don't Know(-2)        15
+Invalid Skip(-3)       2
+TOTAL =========>      88   VALID SKIP(-4)    8896     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:              8        Mean:                 4.9
+ 
+Lead In: Z05547.00[Default]  Z05548.00[-2:-1]
+Default Next Question: Z05552.00
+--------------------------------------------------------------------------------
+Z05932.00    [YAST40-5016_COMB]                             Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             ENTER AMOUNT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+(ENTER AMOUNT)
+ 
+UNIVERSE: Reported government college loans; reports amount of loans
+ 
+NOTE: Topcoded variable - All valid responses over $370,000 have been recoded to
+that value.
+ 
+     167           0
+       1           1 TO 999
+       5        1000 TO 1999
+      10        2000 TO 2999
+      14        3000 TO 3999
+       9        4000 TO 4999
+      15        5000 TO 5999
+       7        6000 TO 6999
+      14        7000 TO 7999
+      12        8000 TO 8999
+       6        9000 TO 9999
+      41       10000 TO 14999
+      32       15000 TO 19999
+      32       20000 TO 24999
+     117       25000 TO 49999
+     201       50000 TO 99999999: 50000+
+  -------
+     683
+ 
+Refusal(-1)            1   (Go To Z05935.00)
+Don't Know(-2)        10   (Go To Z05935.00)
+TOTAL =========>     694   VALID SKIP(-4)    8290     NON-INTERVIEW(-5)       0
+ 
+Min:              0        Max:         370000        Mean:            36417.95
+ 
+Lead In: Z05931.00[1:1]
+Default Next Question: Z05936.00
+--------------------------------------------------------------------------------
+Z05933.00    [YAST40-5017_000001_COMB]                      Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             ENTER LOWER RANGE AMOUNT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+(READ IF NECESSARY) What is the lower amount of the range? What is the upper 
+amount of the range?
+ 
+UNIVERSE: Reported government college loans; reports range of how much owes on 
+loans
+ 
+ 
+        Lower amount
+ 
+       0           0
+       0           1 TO 999
+       0        1000 TO 1999
+       0        2000 TO 2999
+       0        3000 TO 3999
+       0        4000 TO 4999
+       0        5000 TO 5999
+       0        6000 TO 6999
+       0        7000 TO 7999
+       0        8000 TO 8999
+       0        9000 TO 9999
+       0       10000 TO 14999
+       0       15000 TO 19999
+       0       20000 TO 24999
+       1       25000 TO 49999
+       1       50000 TO 99999999: 50000+
+  -------
+       2
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>       2   VALID SKIP(-4)    8982     NON-INTERVIEW(-5)       0
+ 
+Min:          30000        Max:          58000        Mean:               44000
+ 
+Lead In: Z05931.00[2:2]
+Default Next Question: Z05934.00
+--------------------------------------------------------------------------------
+Z05934.00    [YAST40-5017_000002_COMB]                      Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             ENTER UPPER RANGE AMOUNT OWED ON GOVERNMENT EDUCATONAL LOANS
+ 
+UNIVERSE: Reported government college loans; reports range of how much owes on 
+loans
+ 
+ 
+        Upper amount
+ 
+       0           0
+       0           1 TO 999
+       0        1000 TO 1999
+       0        2000 TO 2999
+       0        3000 TO 3999
+       0        4000 TO 4999
+       0        5000 TO 5999
+       0        6000 TO 6999
+       0        7000 TO 7999
+       0        8000 TO 8999
+       0        9000 TO 9999
+       0       10000 TO 14999
+       0       15000 TO 19999
+       0       20000 TO 24999
+       1       25000 TO 49999
+       1       50000 TO 99999999: 50000+
+  -------
+       2
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>       2   VALID SKIP(-4)    8982     NON-INTERVIEW(-5)       0
+ 
+Min:          35000        Max:          75000        Mean:               55000
+ 
+Lead In: Z05933.00[Default]
+Default Next Question: Z05936.00
+--------------------------------------------------------------------------------
+Z05935.00    [YAST40-5018_COMB]                             Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             ESTIMATED AMOUNT OWED ON GOVERNMENT EDUCATIONAL LOANS
+ 
+(REFER TO SHOWCARD II)  [{INPERSONTEXTSUB}]  Can you tell me the letter of the 
+category that is your best estimate of that amount?  (IF SHOWCARDS ARE NOT BEING
+USED, ADD THE FIRST TIME AND LATER AS NECESSARY: I will read the categories in 
+order. Please stop me when I reach the correct one.)
+ 
+UNIVERSE: Reported government college loans; DK/RF to report how much owes
+ 
+       0       1 A. $1 - $1,000
+       0       2 B. $1,001 - $2,500
+       1       3 C. $2,501 - $5,000
+       4       4 D. $5,001 - $10,000
+       1       5 E. $10,001 - $25,000
+       4       6 F. $25,001 - $50,000
+       1       7 G. $50,001 - $100,000
+       1       8 H. More than $100,000
+  -------
+      12
+ 
+Refusal(-1)            9
+Don't Know(-2)         5
+Invalid Skip(-3)       1
+TOTAL =========>      27   VALID SKIP(-4)    8957     NON-INTERVIEW(-5)       0
+ 
+Min:              3        Max:              8        Mean:                5.25
+ 
+Lead In: Z05931.00[Default]  Z05932.00[-2:-1]
+Default Next Question: Z05936.00
+--------------------------------------------------------------------------------
+Z90501.00    [CVC_ASSETS_DEBTS_20]                          Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             DEBT AT AGE 20
+ 
+CUMULATIVE VARIABLE: Amount of financial debt owed at age 20. This variable is 
+created for all respondents regardless of interview status in the current round;
+CVC_ASSETS_RND_20 provides the round of the respondent's age 20 assets 
+interview.
+ 
+NOTE: /*Topcoded to predetermined values.  Respondents with non-housing debt 
+values above $370,000 were topcoded to a value of $370,000.  Negative values of 
+-1, -2, -3, -4, or -5 do not reflect negative monetary amounts; these numbers 
+represent standard NLSY97 codes.*/
+ 
+NOTE: Researchers should note that the age 20 and age 25 variables do not 
+include assets/debts solely held by the respondent's partner/spouse as the 
+questionnaire did not collect this information. As a result, these variables are
+not strictly comparable to similar items collected beginning with the age 30 
+interview which, due to a questionnaire change, include those values.
+ 
+       0    -9999999 TO -3000: < -2999
+       0       -2999 TO -2000
+       0       -1999 TO -1000
+       0        -999 TO -1
+    4613           0
+     972           1 TO 1000
+     394        1001 TO 2000
+     281        2001 TO 3000
+     444        3001 TO 5000
+     731        5001 TO 10000
+     656       10001 TO 20000
+     184       20001 TO 30000
+      59       30001 TO 40000
+      20       40001 TO 50000
+      10       50001 TO 65000
+       3       65001 TO 80000
+       6       80001 TO 100000
+       1      100001 TO 150000
+       1      150001 TO 200000
+       0      200001 TO 999999999: 200001+
+  -------
+    8375
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)     167
+TOTAL =========>    8542   VALID SKIP(-4)     442     NON-INTERVIEW(-5)       0
+ 
+Min:              0        Max:         200000        Mean:             3394.51
+ 
+Lead In: Z90500.00[Default]
+Default Next Question: Z90502.00
+--------------------------------------------------------------------------------
+Z90502.00    [CVC_ASSETS_DEBTS_25]                          Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             DEBT AT AGE 25
+ 
+CUMULATIVE VARIABLE: Amount of finacial debt owed at age 25. This variable is 
+created for all respondents regardless of interview status in the current round;
+CVC_ASSETS_RND_25 provides the round of the respondent's age 25 assets 
+interview.
+ 
+NOTE: /*Topcoded to predetermined values.  Respondents with non-housing debt 
+values above $370,000 were topcoded to a value of $370,000.  Negative values of 
+-1, -2, -3, -4, or -5 do not reflect negative monetary amounts; these numbers 
+represent standard NLSY97 codes.*/
+ 
+NOTE: Researchers should note that the age 20 and age 25 variables do not 
+include assets/debts solely held by the respondent's partner/spouse as the 
+questionnaire did not collect this information. As a result, these variables are
+not strictly comparable to similar items collected beginning with the age 30 
+interview which, due to a questionnaire change, include those values.
+ 
+       0    -9999999 TO -3000: < -2999
+       0       -2999 TO -2000
+       0       -1999 TO -1000
+       0        -999 TO -1
+    2454           0
+     664           1 TO 1000
+     367        1001 TO 2000
+     266        2001 TO 3000
+     468        3001 TO 5000
+     869        5001 TO 10000
+    1185       10001 TO 20000
+     655       20001 TO 30000
+     440       30001 TO 40000
+     182       40001 TO 50000
+     167       50001 TO 65000
+      67       65001 TO 80000
+      47       80001 TO 100000
+      31      100001 TO 150000
+       5      150001 TO 200000
+      13      200001 TO 999999999: 200001+
+  -------
+    7880
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)     270
+TOTAL =========>    8150   VALID SKIP(-4)     834     NON-INTERVIEW(-5)       0
+ 
+Min:              0        Max:         370000        Mean:            12104.47
+ 
+Lead In: Z90501.00[Default]
+Default Next Question: Z90503.00
+--------------------------------------------------------------------------------
+Z90503.00    [CVC_ASSETS_RND_20]                            Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             AGE 20 ASSETS ROUND
+ 
+CUMULATIVE VARIABLE: Round during which assets information for age 20 collected.
+This variable is created for all respondents regardless of interview status in 
+the current round.
+ 
+      67       3 Round 3
+    1476       4 Round 4
+    1631       5 Round 5
+    1766       6 Round 6
+    1640       7 Round 7
+    1613       8 Round 8
+     181       9 Round 9
+     104      10 Round 10
+      27      11 Round 11
+       6      12 Round 12
+  -------
+    8511
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)      31
+TOTAL =========>    8542   VALID SKIP(-4)     442     NON-INTERVIEW(-5)       0
+ 
+Min:              3        Max:             12        Mean:                6.14
+ 
+Lead In: Z90502.00[Default]
+Default Next Question: Z90504.00
+--------------------------------------------------------------------------------
+Z90504.00    [CVC_ASSETS_RND_25]                            Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             AGE 25 ASSETS ROUND
+ 
+CUMULATIVE VARIABLE: Round during which assets information for age 25 collected.
+This variable is created for all respondents regardless of interview status in 
+the current round.
+ 
+       0       8 Round 8
+    1331       9 Round 9
+    1657      10 Round 10
+    1631      11 Round 11
+    1691      12 Round 12
+    1664      13 Round 13
+     114      14 Round 14
+      44      15 Round 15
+      18      16 Round 16
+  -------
+    8150
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    8150   VALID SKIP(-4)     834     NON-INTERVIEW(-5)       0
+ 
+Min:              9        Max:             16        Mean:               11.16
+ 
+Lead In: Z90503.00[Default]
+Default Next Question: Z91414.00
+--------------------------------------------------------------------------------
+Z91225.00    [CVC_ASSETS_DEBTS_30]                          Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             DEBT AT AGE 30
+ 
+CUMULATIVE VARIABLE: Amount of financial debt owed at age 30. This variable is 
+created for all respondents regardless of interview status in the current round;
+CVC_ASSETS_RND_30 provides the round of the respondent's age 30 assets 
+interview.
+ 
+NOTE: /*Topcoded to predetermined values.  Respondents with non-housing debt 
+values above $370,000 were topcoded to a value of $370,000.  Negative values of 
+-1, -2, -3, -4, or -5 do not reflect negative monetary amounts; these numbers 
+represent standard NLSY97 codes.*/
+ 
+       0    -9999999 TO -3000: < -2999
+       0       -2999 TO -2000
+       0       -1999 TO -1000
+       0        -999 TO -1
+    2376           0
+     315           1 TO 1000
+     280        1001 TO 2000
+     200        2001 TO 3000
+     336        3001 TO 5000
+     677        5001 TO 10000
+     969       10001 TO 20000
+     656       20001 TO 30000
+     466       30001 TO 40000
+     294       40001 TO 50000
+     281       50001 TO 65000
+     180       65001 TO 80000
+     143       80001 TO 100000
+     121      100001 TO 150000
+      33      150001 TO 200000
+      58      200001 TO 999999999: 200001+
+  -------
+    7385
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)     325
+TOTAL =========>    7710   VALID SKIP(-4)    1274     NON-INTERVIEW(-5)       0
+ 
+Min:              0        Max:         370000        Mean:            20036.12
+ 
+Lead In: Z91224.00[Default]
+Default Next Question: Z91226.00
+--------------------------------------------------------------------------------
+Z91226.00    [CVC_ASSETS_RND_30]                            Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             AGE 30 ASSETS ROUND
+ 
+CUMULATIVE VARIABLE: Round during which assets information for age 30 collected.
+This variable is created for all respondents regardless of interview status in 
+the current round.
+ 
+    1360      14 Round 14
+    1593      15 Round 15
+    3019      16 Round 16
+    1627      17 Round 17
+     111      18 Round 18
+  -------
+    7710
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    7710   VALID SKIP(-4)    1274     NON-INTERVIEW(-5)       0
+ 
+Min:             14        Max:             18        Mean:               15.68
+ 
+Lead In: Z91225.00[Default]
+Default Next Question: Z90489.00
+--------------------------------------------------------------------------------
+Z91420.00    [CVC_ASSETS_DEBTS_35]                          Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             DEBT AT AGE 35
+ 
+CUMULATIVE VARIABLE: Amount of financial debt owed at age 35. This variable is 
+created for all respondents regardless of interview status in the current round;
+CVC_ASSETS_RND_35 provides the round of the respondent's age 35 assets 
+interview.
+ 
+NOTE: /*Topcoded to predetermined values.  Respondents with non-housing debt 
+values above $370,000 were topcoded to a value of $370,000.  Negative values of 
+-1, -2, -3, -4, or -5 do not reflect negative monetary amounts; these numbers 
+represent standard NLSY97 codes.*/
+ 
+       0    -9999999 TO -3000: < -2999
+       0       -2999 TO -2000
+       0       -1999 TO -1000
+       0        -999 TO -1
+    2469           0
+     284           1 TO 1000
+     166        1001 TO 2000
+     159        2001 TO 3000
+     254        3001 TO 5000
+     571        5001 TO 10000
+     905       10001 TO 20000
+     644       20001 TO 30000
+     421       30001 TO 40000
+     327       40001 TO 50000
+     294       50001 TO 65000
+     192       65001 TO 80000
+     164       80001 TO 100000
+     184      100001 TO 150000
+      75      150001 TO 200000
+      62      200001 TO 999999999: 200001+
+  -------
+    7171
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)     323
+TOTAL =========>    7494   VALID SKIP(-4)    1490     NON-INTERVIEW(-5)       0
+ 
+Min:              0        Max:         370000        Mean:            23170.68
+ 
+Lead In: Z91419.00[Default]
+Default Next Question: Z91421.00
+--------------------------------------------------------------------------------
+Z91421.00    [CVC_ASSETS_RND_35]                            Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             AGE 35 ASSETS ROUND
+ 
+CUMULATIVE VARIABLE: Round during which assets information for age 35 collected.
+This variable is created for all respondents regardless of interview status in 
+the current round.
+ 
+    1291      17 Round 17
+    2876      18 Round 18
+    3139      19 Round 19
+     188      20 Round 20
+  -------
+    7494
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    7494   VALID SKIP(-4)    1490     NON-INTERVIEW(-5)       0
+ 
+Min:             17        Max:             20        Mean:                18.3
+ 
+Lead In: Z91420.00[Default]
+Default Next Question: Z91645.00
+--------------------------------------------------------------------------------
+Z91656.00    [CVC_ASSETS_DEBTS_40]                          Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             DEBT AT AGE 40
+ 
+CUMULATIVE VARIABLE: Amount of financial debt owed at age 40. This variable is 
+created for all respondents regardless of interview status in the current round;
+CVC_ASSETS_RND_40 provides the round of the respondent's age 40 assets 
+interview.
+ 
+NOTE: /*Topcoded to predetermined values.  Respondents with non-housing debt 
+values above $370,000 were topcoded to a value of $370,000.  Negative values of 
+-1, -2, -3, -4, or -5 do not reflect negative monetary amounts; these numbers 
+represent standard NLSY97 codes.*/
+ 
+       0    -9999999 TO -3000: < -2999
+       0       -2999 TO -2000
+       0       -1999 TO -1000
+       0        -999 TO -1
+     904           0
+      88           1 TO 1000
+      51        1001 TO 2000
+      45        2001 TO 3000
+      88        3001 TO 5000
+     153        5001 TO 10000
+     295       10001 TO 20000
+     192       20001 TO 30000
+     153       30001 TO 40000
+      93       40001 TO 50000
+     108       50001 TO 65000
+      86       65001 TO 80000
+      77       80001 TO 100000
+      83      100001 TO 150000
+      37      150001 TO 200000
+      35      200001 TO 999999999: 200001+
+  -------
+    2488
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)     122
+TOTAL =========>    2610   VALID SKIP(-4)    6374     NON-INTERVIEW(-5)       0
+ 
+Min:              0        Max:         370000        Mean:            26858.25
+ 
+Lead In: Z91654.00[Default]
+Default Next Question: Z91658.00
+--------------------------------------------------------------------------------
+Z91658.00    [CVC_ASSETS_RND_40]                            Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             AGE 40 ASSETS ROUND
+ 
+CUMULATIVE VARIABLE: Round during which assets information for age 40 collected.
+This variable is created for all respondents regardless of interview status in 
+the current round.
+ 
+       0      17 Round 17
+       0      18 Round 18
+       0      19 Round 19
+    2610      20 Round 20
+  -------
+    2610
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>    2610   VALID SKIP(-4)    6374     NON-INTERVIEW(-5)       0
+ 
+Min:             20        Max:             20        Mean:                  20
+ 
+Lead In: Z91656.00[Default]
+Default Next Question: Z91227.00
