@@ -122,11 +122,11 @@ nlsy97$student_debt_20[is.na(nlsy97$CVC_ASSETS_RND_20_XRND)] <- NA
   # YAST20 student debt showcard 2004 (recoded to midpoint)
   nlsy97$`YAST-5018_2004`[nlsy97$`YAST-5018_2004`==1] <- 500
   nlsy97$`YAST-5018_2004`[nlsy97$`YAST-5018_2004`==2] <- 1750
-  nlsy97$`YAST-5018_2004`[nlsy97$`YAST-5018_2004`==1] <- 3750
-  nlsy97$`YAST-5018_2004`[nlsy97$`YAST-5018_2004`==1] <- 7500
-  nlsy97$`YAST-5018_2004`[nlsy97$`YAST-5018_2004`==1] <- 17500
-  nlsy97$`YAST-5018_2004`[nlsy97$`YAST-5018_2004`==1] <- 37500
-  nlsy97$`YAST-5018_2004`[nlsy97$`YAST-5018_2004`==1] <- 50000 # "More than $50,000" coded to $50,000
+  nlsy97$`YAST-5018_2004`[nlsy97$`YAST-5018_2004`==3] <- 3750
+  nlsy97$`YAST-5018_2004`[nlsy97$`YAST-5018_2004`==4] <- 7500
+  nlsy97$`YAST-5018_2004`[nlsy97$`YAST-5018_2004`==5] <- 17500
+  nlsy97$`YAST-5018_2004`[nlsy97$`YAST-5018_2004`==6] <- 37500
+  nlsy97$`YAST-5018_2004`[nlsy97$`YAST-5018_2004`==7] <- 50000 # "More than $50,000" coded to $50,000
   
   # YAST20 student debt showcard 2005 (recoded to midpoint)
   nlsy97$`YAST-5018_2005`[nlsy97$`YAST-5018_2005`==1] <- 500
