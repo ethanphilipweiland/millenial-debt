@@ -80,15 +80,15 @@ nlsy97$sex <- ifelse(nlsy97$sex == 1, "Male", nlsy97$sex)
 nlsy97$sex <- ifelse(nlsy97$sex == 2, "Female", nlsy97$sex)
 nlsy97$sex <- factor(nlsy97$sex, levels=c("Male", "Female"))
 
-# parent_income
+# parent_income (centered)
 nlsy97 <- nlsy97 %>% 
   rename(parent_income = CV_INCOME_GROSS_YR_1997) %>%
-  mutate(parent_income = parent_income * filter(inflation, Year==1997)$Buying.Power) # adjusting for inflation
+  mutate(parent_income = parent_income - mean(nlsy97$parent_income))
 
 # parent_net_worth
 nlsy97 <- nlsy97 %>% 
   rename(parent_net_worth = CV_HH_NET_WORTH_P_1997) %>%
-  mutate(parent_net_worth = parent_net_worth * filter(inflation, Year==1997)$Buying.Power) # adjusting for inflation
+  mutate(parent_net_worth = parent_net_worth - mean(nlsy97$parent_net_worth))
 
 # parent_education
 nlsy97$CV_HGC_RES_DAD_1997[nlsy97$CV_HGC_RES_DAD_1997==95] <- NA # data entry error? 
@@ -97,6 +97,7 @@ nlsy97$CV_HGC_RES_DAD_1997[is.na(nlsy97$CV_HGC_RES_DAD_1997)] <- 0
 nlsy97$CV_HGC_RES_MOM_1997[is.na(nlsy97$CV_HGC_RES_MOM_1997)] <- 0
 nlsy97$parent_education <- ifelse(nlsy97$CV_HGC_RES_MOM_1997 > nlsy97$CV_HGC_RES_DAD_1997, nlsy97$CV_HGC_RES_MOM_1997, nlsy97$CV_HGC_RES_DAD_1997)
 nlsy97$parent_education[nlsy97$parent_education==0] <- NA # there are no residential mothers and no residential father's in the sample that have 0 education
+nlsy97$parent_education <- nlsy97$parent_education - mean(nlsy97$parent_education) # centering
 
 # race
 nlsy97 <- nlsy97 %>% rename(race = KEY_RACE_ETHNICITY_1997)
@@ -720,60 +721,49 @@ nlsy97 <- nlsy97 %>%
 # Imputation
 set.seed(1997)
 
-# Converting marital status (across all ages) to a {0, 1} numeric because imputation can't handle factor variables
-for (j in which(startsWith(colnames(nlsy97), "marital"))) { 
-  nlsy97[,j] <- ifelse(nlsy97[,j]=="Married", "1", nlsy97[,j])
-  nlsy97[,j] <- ifelse(nlsy97[,j]=="Not Married", "0", nlsy97[,j])
-  nlsy97[,j] <- as.numeric(nlsy97[,j])
-}
+  # Converting marital status (across all ages) to a {0, 1} numeric because imputation can't handle factor variables
+  for (j in which(startsWith(colnames(nlsy97), "marital"))) { 
+    nlsy97[,j] <- ifelse(nlsy97[,j]=="Married", "1", nlsy97[,j])
+    nlsy97[,j] <- ifelse(nlsy97[,j]=="Not Married", "0", nlsy97[,j])
+    nlsy97[,j] <- as.numeric(nlsy97[,j])
+  }
 
-cols_impute <- c("sex", # columns to impute
-                 "race",
-                 "age_20",
-                 "age_25",
-                 "age_30",
-                 "age_35",
-                 "age_40",
-                 "educ_20",
-                 "educ_25",
-                 "educ_30",
-                 "educ_35",
-                 "educ_40",
-                 "income20",
-                 "income25",
-                 "income30",
-                 "income35",
-                 "income40",
-                 "assets20",
-                 "assets25",
-                 "assets30",
-                 "assets35",
-                 "assets40",
-                 "marital_status_20",
-                 "marital_status_25",
-                 "marital_status_30",
-                 "marital_status_35",
-                 "marital_status_40",
-                 "num_children_20",
-                 "num_children_25",
-                 "num_children_30",
-                 "num_children_35",
-                 "num_children_40")
-cols_impute_index <- which(colnames(nlsy97) %in% cols_impute)
-impute <- preProcess(nlsy97[,cols_impute_index], method=c("bagImpute")) # imputation using bagging (decision tree)
-predictors <- predict(impute, nlsy97[,cols_impute_index])
+impute <- preProcess(nlsy97, method=c("bagImpute"))
+predictors <- predict(impute, nlsy97)
+predictors <- predictors %>%
+  select(-starts_with("debt"),
+         -starts_with("student")) # removing imputed dependent variables
 
-# If probability of being married >= 50% then "Married", if < 50% then "Not Married"
-for (j in which(startsWith(colnames(predictors), "marital"))) {
-  predictors[,j] <- ifelse(predictors[,j] >= 0.5, 1, 0)
-  predictors[,j] <- as.character(predictors[,j])
-  predictors[,j] <- ifelse(predictors[,j]=="1", "Married", "Not Married")
-  predictors[,j] <- factor(predictors[,j], levels=c("Married", "Not Married"))
-}
+  # If probability of being married >= 50% then "Married", if < 50% then "Not Married"
+  for (j in which(startsWith(colnames(predictors), "marital"))) {
+    predictors[,j] <- ifelse(predictors[,j] >= 0.5, 1, 0)
+    predictors[,j] <- as.character(predictors[,j])
+    predictors[,j] <- ifelse(predictors[,j]=="1", "Married", "Not Married")
+    predictors[,j] <- factor(predictors[,j], levels=c("Married", "Not Married"))
+  }
 
-cols_not_imputed <- nlsy97[,which(!(colnames(nlsy97) %in% cols_impute))]
-nlsy97 <- cols_not_imputed %>% # dropping non-imputed columns and joining in imputed columns
-  bind_cols(predictors) 
+nlsy97 <- nlsy97 %>%
+  select(starts_with("debt"), # select unimputed dependent variables
+         starts_with("student")) %>%
+  bind_cols(predictors) %>% # join in imputed independent variables and control variables
+  relocate(id)
+
+# Restricting data
+total_debt <- nlsy97 %>% # respondents with at least one debt measurement
+  filter(debt_20 > 0 |
+           debt_25 > 0 |
+           debt_30 > 0 |
+           debt_35 > 0 |
+           debt_40 > 0)
+save(total_debt, file="total_debt_wide.RData")
+
+student_debt <- nlsy97 %>% # respondents with at least one student debt measurement
+  filter(student_debt_20 > 0 |
+           student_debt_25 > 0 |
+           student_debt_30 > 0 |
+           student_debt_35 > 0 |
+           student_debt_40 > 0)
+save(student_debt, file="student_debt_wide.RData")
 
 # Pivoting longer
 
@@ -806,12 +796,6 @@ nlsy97 <- cols_not_imputed %>% # dropping non-imputed columns and joining in imp
   num_children <- pivot_tvc("num_children")
   
   # total_debt
-  total_debt <- nlsy97 %>% # respondents with at least one debt measurement
-    filter(debt_20 > 0 |
-             debt_25 > 0 |
-             debt_30 > 0 |
-             debt_35 > 0 |
-             debt_40 > 0)
   total_debt <- total_debt %>%
     select(-starts_with("student_debt"), # only interested in total debt for RQ #1 and RQ #2
            # removing time variant controls
@@ -844,14 +828,8 @@ nlsy97 <- cols_not_imputed %>% # dropping non-imputed columns and joining in imp
              debt)
   
   # student_debt
-  student_debt <- nlsy97 %>% # respondents with at least one student debt measurement
-    filter(student_debt_20 > 0 |
-             student_debt_25 > 0 |
-             student_debt_30 > 0 |
-             student_debt_35 > 0 |
-             student_debt_40 > 0)
   student_debt <- student_debt %>%
-    select(-starts_with("total_debt"), # only interested in studnet debt for RQ #3
+    select(-starts_with("total_debt"), # only interested in student debt for RQ #3
            # removing time variant controls
            -starts_with("age"),
            -starts_with("educ"),
@@ -883,4 +861,3 @@ nlsy97 <- cols_not_imputed %>% # dropping non-imputed columns and joining in imp
   
 save(total_debt, file="total_debt.RData")
 save(student_debt, file="student_debt.RData")
-

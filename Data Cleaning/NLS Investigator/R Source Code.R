@@ -4124,6 +4124,5 @@ summary(new_data)
 
 #************************************************************************************************************
 
-# Uncomment the following lines to rename new_data as nlsy97 and save it in the working directory as an .RData object
-# nlsy97 <- new_data
-# save(nlsy97, file="nlsy97.RData")
+nlsy97 <- new_data
+save(nlsy97, file="nlsy97.RData")
