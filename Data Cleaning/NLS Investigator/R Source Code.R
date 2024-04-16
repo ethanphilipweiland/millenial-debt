@@ -4126,3 +4126,4 @@ summary(new_data)
 
 nlsy97 <- new_data
 save(nlsy97, file="nlsy97.RData")
+

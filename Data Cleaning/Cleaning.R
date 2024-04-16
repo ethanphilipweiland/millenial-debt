@@ -80,15 +80,15 @@ nlsy97$sex <- ifelse(nlsy97$sex == 1, "Male", nlsy97$sex)
 nlsy97$sex <- ifelse(nlsy97$sex == 2, "Female", nlsy97$sex)
 nlsy97$sex <- factor(nlsy97$sex, levels=c("Male", "Female"))
 
-# parent_income (centered)
+# parent_income
 nlsy97 <- nlsy97 %>% 
   rename(parent_income = CV_INCOME_GROSS_YR_1997) %>%
-  mutate(parent_income = parent_income - mean(nlsy97$parent_income))
+  mutate(parent_income = parent_income * filter(inflation, Year==1997)$Buying.Power) # adjusting for inflation
 
 # parent_net_worth
 nlsy97 <- nlsy97 %>% 
   rename(parent_net_worth = CV_HH_NET_WORTH_P_1997) %>%
-  mutate(parent_net_worth = parent_net_worth - mean(nlsy97$parent_net_worth))
+  mutate(parent_net_worth = parent_net_worth * filter(inflation, Year==1997)$Buying.Power) # adjusting for inflation
 
 # parent_education
 nlsy97$CV_HGC_RES_DAD_1997[nlsy97$CV_HGC_RES_DAD_1997==95] <- NA # data entry error? 
@@ -97,7 +97,6 @@ nlsy97$CV_HGC_RES_DAD_1997[is.na(nlsy97$CV_HGC_RES_DAD_1997)] <- 0
 nlsy97$CV_HGC_RES_MOM_1997[is.na(nlsy97$CV_HGC_RES_MOM_1997)] <- 0
 nlsy97$parent_education <- ifelse(nlsy97$CV_HGC_RES_MOM_1997 > nlsy97$CV_HGC_RES_DAD_1997, nlsy97$CV_HGC_RES_MOM_1997, nlsy97$CV_HGC_RES_DAD_1997)
 nlsy97$parent_education[nlsy97$parent_education==0] <- NA # there are no residential mothers and no residential father's in the sample that have 0 education
-nlsy97$parent_education <- nlsy97$parent_education - mean(nlsy97$parent_education) # centering
 
 # race
 nlsy97 <- nlsy97 %>% rename(race = KEY_RACE_ETHNICITY_1997)
@@ -728,7 +727,7 @@ set.seed(1997)
     nlsy97[,j] <- as.numeric(nlsy97[,j])
   }
 
-impute <- preProcess(nlsy97, method=c("bagImpute"))
+impute <- preProcess(nlsy97, method=c("bagImpute")) # imputation using bagging (decision tree)
 predictors <- predict(impute, nlsy97)
 predictors <- predictors %>%
   select(-starts_with("debt"),
@@ -749,21 +748,25 @@ nlsy97 <- nlsy97 %>%
   relocate(id)
 
 # Restricting data
-total_debt <- nlsy97 %>% # respondents with at least one debt measurement
+total_debt <- nlsy97 %>% # respondents with debt at at least one measurement interval
   filter(debt_20 > 0 |
            debt_25 > 0 |
            debt_30 > 0 |
            debt_35 > 0 |
-           debt_40 > 0)
-save(total_debt, file="total_debt_wide.RData")
+           debt_40 > 0) %>%
+  select(-starts_with("student_debt")) # only interested in total debt for RQ #1 and RQ #2
+total_debt_wide <- total_debt
+save(total_debt_wide, file="total_debt_wide.RData")
 
-student_debt <- nlsy97 %>% # respondents with at least one student debt measurement
+student_debt <- nlsy97 %>% # respondents with student debt at at least one measurement interval
   filter(student_debt_20 > 0 |
            student_debt_25 > 0 |
            student_debt_30 > 0 |
            student_debt_35 > 0 |
-           student_debt_40 > 0)
-save(student_debt, file="student_debt_wide.RData")
+           student_debt_40 > 0) %>%
+  select(-starts_with("debt")) # only interested in student debt for RQ #3
+student_debt_wide <- student_debt
+save(student_debt_wide, file="student_debt_wide.RData")
 
 # Pivoting longer
 
@@ -797,9 +800,7 @@ save(student_debt, file="student_debt_wide.RData")
   
   # total_debt
   total_debt <- total_debt %>%
-    select(-starts_with("student_debt"), # only interested in total debt for RQ #1 and RQ #2
-           # removing time variant controls
-           -starts_with("age"),
+    select(-starts_with("age"), # removing time variant controls
            -starts_with("educ"),
            -starts_with("income"),
            -starts_with("assets"),
@@ -829,9 +830,7 @@ save(student_debt, file="student_debt_wide.RData")
   
   # student_debt
   student_debt <- student_debt %>%
-    select(-starts_with("total_debt"), # only interested in student debt for RQ #3
-           # removing time variant controls
-           -starts_with("age"),
+    select(-starts_with("age"), # removing time variant controls
            -starts_with("educ"),
            -starts_with("income"),
            -starts_with("assets"),
