@@ -83,13 +83,15 @@ nlsy97$sex <- factor(nlsy97$sex, levels=c("Male", "Female"))
 # parent_income
 nlsy97 <- nlsy97 %>% 
   rename(parent_income = CV_INCOME_GROSS_YR_1997) %>%
-  mutate(parent_income = parent_income * filter(inflation, Year==1997)$Buying.Power) # adjusting for inflation
+  mutate(parent_income = parent_income * filter(inflation, Year==1997)$Buying.Power) %>% # adjusting for inflation
+  mutate(parent_income = parent_income / 1000) # in $1000s
 
 # parent_net_worth
 nlsy97 <- nlsy97 %>% 
   rename(parent_net_worth = CV_HH_NET_WORTH_P_1997) %>%
-  mutate(parent_net_worth = parent_net_worth * filter(inflation, Year==1997)$Buying.Power) # adjusting for inflation
-
+  mutate(parent_net_worth = parent_net_worth * filter(inflation, Year==1997)$Buying.Power) %>% # adjusting for inflation
+  mutate(parent_net_worth = parent_net_worth / 1000) # in $1000s
+  
 # parent_education
 nlsy97$CV_HGC_RES_DAD_1997[nlsy97$CV_HGC_RES_DAD_1997==95] <- NA # data entry error? 
 nlsy97$CV_HGC_RES_MOM_1997[nlsy97$CV_HGC_RES_MOM_1997==95] <- NA # data entry error?
@@ -105,184 +107,6 @@ nlsy97$race[nlsy97$race==2] <- "Hispanic"
 nlsy97$race[nlsy97$race==3] <- "Multiracial (Non-Hispanic)"
 nlsy97$race[nlsy97$race==4] <- "Non-Black / Non-Hispanic"
 nlsy97$race <- factor(nlsy97$race, levels=c("Non-Black / Non-Hispanic", "Black", "Hispanic", "Multiracial (Non-Hispanic)"))
-
-# student_debt_20
-nlsy97$student_debt_20 <- 0
-nlsy97$student_debt_20[is.na(nlsy97$CVC_ASSETS_RND_20_XRND)] <- NA
-
-  # YAST20 student debt showcard 2003 (recoded to midpoint)
-  nlsy97$`YAST-5018_2003`[nlsy97$`YAST-5018_2003`==1] <- 500
-  nlsy97$`YAST-5018_2003`[nlsy97$`YAST-5018_2003`==2] <- 1750
-  nlsy97$`YAST-5018_2003`[nlsy97$`YAST-5018_2003`==3] <- 3750
-  nlsy97$`YAST-5018_2003`[nlsy97$`YAST-5018_2003`==4] <- 7500
-  nlsy97$`YAST-5018_2003`[nlsy97$`YAST-5018_2003`==5] <- 17500
-  nlsy97$`YAST-5018_2003`[nlsy97$`YAST-5018_2003`==6] <- 37500
-  nlsy97$`YAST-5018_2003`[nlsy97$`YAST-5018_2003`==7] <- 50000 # "More than $50,000" coded to $50,000
-  
-  # YAST20 student debt showcard 2004 (recoded to midpoint)
-  nlsy97$`YAST-5018_2004`[nlsy97$`YAST-5018_2004`==1] <- 500
-  nlsy97$`YAST-5018_2004`[nlsy97$`YAST-5018_2004`==2] <- 1750
-  nlsy97$`YAST-5018_2004`[nlsy97$`YAST-5018_2004`==3] <- 3750
-  nlsy97$`YAST-5018_2004`[nlsy97$`YAST-5018_2004`==4] <- 7500
-  nlsy97$`YAST-5018_2004`[nlsy97$`YAST-5018_2004`==5] <- 17500
-  nlsy97$`YAST-5018_2004`[nlsy97$`YAST-5018_2004`==6] <- 37500
-  nlsy97$`YAST-5018_2004`[nlsy97$`YAST-5018_2004`==7] <- 50000 # "More than $50,000" coded to $50,000
-  
-  # YAST20 student debt showcard 2005 (recoded to midpoint)
-  nlsy97$`YAST-5018_2005`[nlsy97$`YAST-5018_2005`==1] <- 500
-  nlsy97$`YAST-5018_2005`[nlsy97$`YAST-5018_2005`==2] <- 1750
-  nlsy97$`YAST-5018_2005`[nlsy97$`YAST-5018_2005`==3] <- 3750
-  nlsy97$`YAST-5018_2005`[nlsy97$`YAST-5018_2005`==4] <- 7500
-  nlsy97$`YAST-5018_2005`[nlsy97$`YAST-5018_2005`==5] <- 17500
-  nlsy97$`YAST-5018_2005`[nlsy97$`YAST-5018_2005`==6] <- 37500
-  nlsy97$`YAST-5018_2005`[nlsy97$`YAST-5018_2005`==7] <- 50000 # "More than $50,000" coded to $50,000
-
-for (i in 1:nrow(nlsy97)) {
-  if (!is.na(nlsy97$`YAST-5016_2003`[i])) {
-    nlsy97$student_debt_20[i] <- nlsy97$`YAST-5016_2003`[i] 
-  } else if (!is.na(nlsy97$`YAST-5016_2004`[i])) {
-    nlsy97$student_debt_20[i] <- nlsy97$`YAST-5016_2004`[i] 
-  } else if (!is.na(nlsy97$`YAST-5016_2005`[i])) {
-    nlsy97$student_debt_20[i] <- nlsy97$`YAST-5016_2005`[i] 
-  } else if (!is.na(nlsy97$`YAST-5016_2006`[i])) {
-    nlsy97$student_debt_20[i] <- nlsy97$`YAST-5016_2006`[i] 
-  } else if (!is.na(nlsy97$`YAST-5016_2007`[i])) {
-    nlsy97$student_debt_20[i] <- nlsy97$`YAST-5016_2007`[i] 
-  } else if (!is.na(nlsy97$`YAST-5017~000001_2003`[i])) { # respondents answered w/ range
-    nlsy97$student_debt_20[i] <- (nlsy97$`YAST-5017~000001_2003`[i] + nlsy97$`YAST-5017~000002_2003`[i]) / 2 
-  } else if (!is.na(nlsy97$`YAST-5017_000001_2004`[i])) { # respondents answered w/ range
-    nlsy97$student_debt_20[i] <- (nlsy97$`YAST-5017_000001_2004`[i] + nlsy97$`YAST-5017_000002_2004`[i]) / 2 
-  } else if (!is.na(nlsy97$`YAST-5017_000001_2005`[i])) { # respondents answered w/ range
-    nlsy97$student_debt_20[i] <- (nlsy97$`YAST-5017_000001_2005`[i] + nlsy97$`YAST-5017_000002_2005`[i]) / 2 
-  } else if (!is.na(nlsy97$`YAST-5018_2003`[i])) { # respondents answered with showcard
-    nlsy97$student_debt_20[i] <- nlsy97$`YAST-5018_2003`[i]
-  } else if (!is.na(nlsy97$`YAST-5018_2004`[i])) { # respondents answered with showcard
-    nlsy97$student_debt_20[i] <- nlsy97$`YAST-5018_2004`[i]
-  } else if (!is.na(nlsy97$`YAST-5018_2005`[i])) { # respondents answered with showcard
-    nlsy97$student_debt[i] <- nlsy97$`YAST-5018_2005`[i]
-  }
-}
-
-nlsy97 <- nlsy97 %>% # adjusting for inflation
-  left_join(inflation, by=join_by(CVC_ASSETS_RND_20_XRND==Year)) %>%
-  mutate(student_debt_20 = student_debt_20*Buying.Power) %>%
-  select(-Buying.Power)
-
-# student_debt_25
-nlsy97$student_debt_25 <- 0
-nlsy97$student_debt_25[is.na(nlsy97$CVC_ASSETS_RND_25_XRND)] <- NA
-
-  # YAST25 student debt showcard (recoded to midpoint)
-  nlsy97$`YAST25-5018_COMB_XRND`[nlsy97$`YAST25-5018_COMB_XRND`==1] <- 500
-  nlsy97$`YAST25-5018_COMB_XRND`[nlsy97$`YAST25-5018_COMB_XRND`==2] <- 1750
-  nlsy97$`YAST25-5018_COMB_XRND`[nlsy97$`YAST25-5018_COMB_XRND`==3] <- 3750
-  nlsy97$`YAST25-5018_COMB_XRND`[nlsy97$`YAST25-5018_COMB_XRND`==4] <- 7500
-  nlsy97$`YAST25-5018_COMB_XRND`[nlsy97$`YAST25-5018_COMB_XRND`==5] <- 17500
-  nlsy97$`YAST25-5018_COMB_XRND`[nlsy97$`YAST25-5018_COMB_XRND`==6] <- 37500
-  nlsy97$`YAST25-5018_COMB_XRND`[nlsy97$`YAST25-5018_COMB_XRND`==7] <- 75000
-  nlsy97$`YAST25-5018_COMB_XRND`[nlsy97$`YAST25-5018_COMB_XRND`==8] <- 100000 # Recoded "More than $100,000" to $100,000
-  
-for (i in 1:nrow(nlsy97)) {
-  if (!is.na(nlsy97$`YAST25-5016_COMB_XRND`[i])) {
-    nlsy97$student_debt_25[i] <- nlsy97$`YAST25-5016_COMB_XRND`[i]
-  } else if (!is.na(nlsy97$`YAST25-5017_000001_COMB_XRND`[i])) { # respondents answered w/ range
-    nlsy97$student_debt_25[i] <- (nlsy97$`YAST25-5017_000001_COMB_XRND`[i] + nlsy97$`YAST25-5017_000002_COMB_XRND`[i]) / 2 
-  } else if (!is.na(nlsy97$`YAST25-5018_COMB_XRND`[i])) { # respondents answered with showcard
-    nlsy97$student_debt_25[i] <- nlsy97$`YAST25-5018_COMB_XRND`[i]
-  }
-}
-
-nlsy97 <- nlsy97 %>% # adjusting for inflation
-  left_join(inflation, by=join_by(CVC_ASSETS_RND_25_XRND==Year)) %>%
-  mutate(student_debt_25 = student_debt_25*Buying.Power) %>%
-  select(-Buying.Power)
-
-# student_debt_30
-nlsy97$student_debt_30 <- 0
-nlsy97$student_debt_30[is.na(nlsy97$CVC_ASSETS_RND_30_XRND)] <- NA
-
-  # YAST30 student debt showcard (recoded to midpoint)
-  nlsy97$`YAST30-5018_COMB_XRND`[nlsy97$`YAST30-5018_COMB_XRND`==1] <- 500
-  nlsy97$`YAST30-5018_COMB_XRND`[nlsy97$`YAST30-5018_COMB_XRND`==2] <- 1750
-  nlsy97$`YAST30-5018_COMB_XRND`[nlsy97$`YAST30-5018_COMB_XRND`==3] <- 3750
-  nlsy97$`YAST30-5018_COMB_XRND`[nlsy97$`YAST30-5018_COMB_XRND`==4] <- 7500
-  nlsy97$`YAST30-5018_COMB_XRND`[nlsy97$`YAST30-5018_COMB_XRND`==5] <- 17500
-  nlsy97$`YAST30-5018_COMB_XRND`[nlsy97$`YAST30-5018_COMB_XRND`==6] <- 37500
-  nlsy97$`YAST30-5018_COMB_XRND`[nlsy97$`YAST30-5018_COMB_XRND`==7] <- 75000
-  nlsy97$`YAST30-5018_COMB_XRND`[nlsy97$`YAST30-5018_COMB_XRND`==8] <- 100000 # Recoded "More than $100,000" to $100,000
-  
-for (i in 1:nrow(nlsy97)) {
-  if (!is.na(nlsy97$`YAST30-5016_COMB_XRND`[i])) {
-    nlsy97$student_debt_30[i] <- nlsy97$`YAST30-5016_COMB_XRND`[i]
-  } else if (!is.na(nlsy97$`YAST30-5017_000001_COMB_XRND`[i])) { # respondents answered w/ range
-    nlsy97$student_debt_30[i] <- (nlsy97$`YAST30-5017_000001_COMB_XRND`[i] + nlsy97$`YAST30-5017_000002_COMB_XRND`[i]) / 2
-  } else if (!is.na(nlsy97$`YAST30-5018_COMB_XRND`[i])) { # respondents answered with showcard
-    nlsy97$student_debt_30[i] <- nlsy97$`YAST30-5018_COMB_XRND`[i]
-  }
-}
-  
-nlsy97 <- nlsy97 %>% # adjusting for inflation
-  left_join(inflation, by=join_by(CVC_ASSETS_RND_30_XRND==Year)) %>%
-  mutate(student_debt_30 = student_debt_30*Buying.Power) %>%
-  select(-Buying.Power)
-  
-# student_debt_35
-nlsy97$student_debt_35 <- 0
-nlsy97$student_debt_35[is.na(nlsy97$CVC_ASSETS_RND_35_XRND)] <- NA
-
-  # YAST35 student debt showcard (recoded to midpoint)
-  nlsy97$`YAST35-5018_COMB_XRND`[nlsy97$`YAST35-5018_COMB_XRND`==1] <- 500
-  nlsy97$`YAST35-5018_COMB_XRND`[nlsy97$`YAST35-5018_COMB_XRND`==2] <- 1750
-  nlsy97$`YAST35-5018_COMB_XRND`[nlsy97$`YAST35-5018_COMB_XRND`==3] <- 3750
-  nlsy97$`YAST35-5018_COMB_XRND`[nlsy97$`YAST35-5018_COMB_XRND`==4] <- 7500
-  nlsy97$`YAST35-5018_COMB_XRND`[nlsy97$`YAST35-5018_COMB_XRND`==5] <- 17500
-  nlsy97$`YAST35-5018_COMB_XRND`[nlsy97$`YAST35-5018_COMB_XRND`==6] <- 37500
-  nlsy97$`YAST35-5018_COMB_XRND`[nlsy97$`YAST35-5018_COMB_XRND`==7] <- 75000
-  nlsy97$`YAST35-5018_COMB_XRND`[nlsy97$`YAST35-5018_COMB_XRND`==8] <- 10000 # Coded "More than $100,000" as 100,000
-  
-for (i in 1:nrow(nlsy97)) {
-  if (!is.na(nlsy97$`YAST35-5016_COMB_XRND`[i])) {
-    nlsy97$student_debt_35[i] <- nlsy97$`YAST35-5016_COMB_XRND`[i]
-  } else if (!is.na(nlsy97$`YAST35-5017_000001_COMB_XRND`[i])) { # respondents answered w/ range
-    nlsy97$student_debt_35[i] <- (nlsy97$`YAST35-5017_000001_COMB_XRND`[i] + nlsy97$`YAST35-5017_000002_COMB_XRND`[i]) / 2
-  } else if (!is.na(nlsy97$`YAST35-5018_COMB_XRND`[i])) { # respondents answered with showcard
-    nlsy97$student_debt_35[i] <- nlsy97$`YAST35-5018_COMB_XRND`[i]
-  }
-}
-
-nlsy97 <- nlsy97 %>% # adjusting for inflation
-  left_join(inflation, by=join_by(CVC_ASSETS_RND_35_XRND==Year)) %>%
-  mutate(student_debt_35 = student_debt_35*Buying.Power) %>%
-  select(-Buying.Power)
-  
-# student_debt_40
-nlsy97$student_debt_40 <- 0
-nlsy97$student_debt_40[is.na(nlsy97$CVC_ASSETS_RND_40_XRND)] <- NA
-
-  # Recoding YAST40 student debt showcard
-  nlsy97$`YAST40-5018_COMB_XRND`[nlsy97$`YAST40-5018_COMB_XRND`==1] <- 500
-  nlsy97$`YAST40-5018_COMB_XRND`[nlsy97$`YAST40-5018_COMB_XRND`==2] <- 1750
-  nlsy97$`YAST40-5018_COMB_XRND`[nlsy97$`YAST40-5018_COMB_XRND`==3] <- 3750
-  nlsy97$`YAST40-5018_COMB_XRND`[nlsy97$`YAST40-5018_COMB_XRND`==4] <- 7500
-  nlsy97$`YAST40-5018_COMB_XRND`[nlsy97$`YAST40-5018_COMB_XRND`==5] <- 17500
-  nlsy97$`YAST40-5018_COMB_XRND`[nlsy97$`YAST40-5018_COMB_XRND`==6] <- 37500
-  nlsy97$`YAST40-5018_COMB_XRND`[nlsy97$`YAST40-5018_COMB_XRND`==7] <- 75000
-  nlsy97$`YAST40-5018_COMB_XRND`[nlsy97$`YAST40-5018_COMB_XRND`==8] <- 100000 # Recoding "More than $100,000" to $100,000
-  
-for (i in 1:nrow(nlsy97)) {
-  if (!is.na(nlsy97$`YAST40-5016_COMB_XRND`[i])) {
-    nlsy97$student_debt_40[i] <- nlsy97$`YAST40-5016_COMB_XRND`[i]
-  } else if (!is.na(nlsy97$`YAST40-5017_000001_COMB_XRND`[i])) { # respondents answered w/ range
-    nlsy97$student_debt_40[i] <- (nlsy97$`YAST40-5017_000001_COMB_XRND`[i] + nlsy97$`YAST40-5017_000002_COMB_XRND`[i]) / 2
-  } else if (!is.na(nlsy97$`YAST40-5018_COMB_XRND`[i])) { # respondents answered with showcard
-    nlsy97$student_debt_40[i] <- nlsy97$`YAST40-5018_COMB_XRND`[i]
-  }
-}
-  
-nlsy97 <- nlsy97 %>% # adjusting for inflation
-  left_join(inflation, by=join_by(CVC_ASSETS_RND_40_XRND==Year)) %>%
-  mutate(student_debt_40 = student_debt_40*Buying.Power) %>%
-  select(-Buying.Power)
 
 # debt_20
 nlsy97 <- nlsy97 %>%
@@ -458,6 +282,7 @@ for (i in 1:nrow(nlsy97)) {
     nlsy97$income20[i] <- nlsy97$income20[i]*filter(inflation, Year==round)$Buying.Power # adjusting for inflation (2024 $)
   }
 }
+nlsy97$income20 <- nlsy97$income20 / 1000 # in $1000s
 
 nlsy97$income25 <- NA
 for (i in 1:nrow(nlsy97)) {
@@ -468,6 +293,7 @@ for (i in 1:nrow(nlsy97)) {
     nlsy97$income25[i] <- nlsy97$income25[i]*filter(inflation, Year==round)$Buying.Power # adjusting for inflation (2024 $)
   }
 }
+nlsy97$income25 <- nlsy97$income25 / 1000 # in $1000s
 
 nlsy97$income30 <- NA
 for (i in 1:nrow(nlsy97)) {
@@ -478,6 +304,7 @@ for (i in 1:nrow(nlsy97)) {
     nlsy97$income30[i] <- nlsy97$income30[i]*filter(inflation, Year==round)$Buying.Power # adjusting for inflation (2024 $)
   }
 }
+nlsy97$income30 <- nlsy97$income30 / 1000 # in $1000s
 
 nlsy97$income35 <- NA
 for (i in 1:nrow(nlsy97)) {
@@ -488,6 +315,7 @@ for (i in 1:nrow(nlsy97)) {
     nlsy97$income35[i] <- nlsy97$income35[i]*filter(inflation, Year==round)$Buying.Power # adjusting for inflation (2024 $)
   }
 }
+nlsy97$income35 <- nlsy97$income35 / 1000 # in $1000s
 
 nlsy97$income40 <- NA
 for (i in 1:nrow(nlsy97)) {
@@ -498,6 +326,7 @@ for (i in 1:nrow(nlsy97)) {
     nlsy97$income40[i] <- nlsy97$income40[i]*filter(inflation, Year==round)$Buying.Power # adjusting for inflation (2024 $)
   }
 }
+nlsy97$income40 <- nlsy97$income40 / 1000 # in $1000s
 
 # assets
 nlsy97$assets20 <- nlsy97$CVC_ASSETS_FINANCIAL_20_XRND + nlsy97$CVC_ASSETS_NONFINANCIAL_20_XRND
@@ -505,39 +334,44 @@ for (i in 1:length(nlsy97$assets20)) {
   round <- nlsy97$CVC_ASSETS_RND_20_XRND[i]
   if (!is.na(round)) { nlsy97$assets20[i] <- nlsy97$assets20[i]*filter(inflation, Year==round)$Buying.Power } # adjusting for inflation
 }
+nlsy97$assets20 <- nlsy97$assets20 / 1000 # in $1000s
 
 nlsy97$assets25 <- nlsy97$CVC_ASSETS_FINANCIAL_25_XRND + nlsy97$CVC_ASSETS_NONFINANCIAL_25_XRND
 for (i in 1:length(nlsy97$assets25)) {
   round <- nlsy97$CVC_ASSETS_RND_25_XRND[i]
   if (!is.na(round)) { nlsy97$assets25[i] <- nlsy97$assets25[i]*filter(inflation, Year==round)$Buying.Power } # adjusting for inflation
 }
+nlsy97$assets25 <- nlsy97$assets25 / 1000 # in $1000s
 
 nlsy97$assets30 <- nlsy97$CVC_ASSETS_FINANCIAL_30_XRND + nlsy97$CVC_ASSETS_NONFINANCIAL_30_XRND
 for (i in 1:length(nlsy97$assets30)) {
   round <- nlsy97$CVC_ASSETS_RND_30_XRND[i]
   if (!is.na(round)) { nlsy97$assets30[i] <- nlsy97$assets30[i]*filter(inflation, Year==round)$Buying.Power } # adjusting for inflation
 }
+nlsy97$assets30 <- nlsy97$assets30 / 1000 # in $1000s
 
 nlsy97$assets35 <- nlsy97$CVC_ASSETS_FINANCIAL_35_XRND + nlsy97$CVC_ASSETS_NONFINANCIAL_35_XRND
 for (i in 1:length(nlsy97$assets35)) {
   round <- nlsy97$CVC_ASSETS_RND_35_XRND[i]
   if (!is.na(round)) { nlsy97$assets35[i] <- nlsy97$assets35[i]*filter(inflation, Year==round)$Buying.Power } # adjusting for inflation
 }
+nlsy97$assets35 <- nlsy97$assets35 / 1000 # in $1000s
 
 nlsy97$assets40 <- nlsy97$CVC_ASSETS_FINANCIAL_40_XRND + nlsy97$CVC_ASSETS_NONFINANCIAL_40_XRND
 for (i in 1:length(nlsy97$assets40)) {
   round <- nlsy97$CVC_ASSETS_RND_40_XRND[i]
   if (!is.na(round)) { nlsy97$assets40[i] <- nlsy97$assets40[i]*filter(inflation, Year==round)$Buying.Power } # adjusting for inflation
 }
+nlsy97$assets40 <- nlsy97$assets40 / 1000 # in $1000s
 
 # marital_status
 
-  # Creating 2-level factor ("Married", "Not Married")
+  # Creating 2-level factor ("Not Married", "Married")
   marstat_columns <- select(nlsy97, starts_with("CV_MARSTAT"))
   marstat_columns <- apply(marstat_columns, 2, as.character)
   marstat_columns <- ifelse(marstat_columns == "1", "Married", marstat_columns)
   marstat_columns <- ifelse(marstat_columns != "Married" & !is.na(marstat_columns), "Not Married", marstat_columns)
-  marstat_columns <- apply(marstat_columns, 2, factor, levels=c("Married", "Not Married"))
+  marstat_columns <- apply(marstat_columns, 2, factor, levels=c("Not Married", "Married"))
   marstat_columns <- data.frame(marstat_columns)
 
 nlsy97 <- nlsy97 %>%
@@ -649,13 +483,6 @@ for (i in 1:nrow(nlsy97)) {
       select(nlsy97, starts_with("CV_BIO_CHILD") & ends_with(paste0("NR_", as.character(round))))[i,]
   }
 }
-  
-# weight
-weights <- read.table("Custom Weights.dat")
-nlsy97 <- nlsy97 %>%
-  inner_join(weights, by=c("id"="V1")) %>% # joining in weights
-  rename(weight = V2) %>%
-  mutate(weight = weight / sum(weight)) # standardizing weights
 
 # VSTRAT
 nlsy97 <- nlsy97 %>%
@@ -673,11 +500,6 @@ nlsy97 <- nlsy97 %>%
          parent_net_worth,
          parent_education,
          race,
-         student_debt_20,
-         student_debt_25,
-         student_debt_30,
-         student_debt_35,
-         student_debt_40,
          debt_20,
          debt_25,
          debt_30,
@@ -713,7 +535,6 @@ nlsy97 <- nlsy97 %>%
          num_children_30,
          num_children_35,
          num_children_40,
-         weight,
          VSTRAT,
          VPSU)
 
@@ -730,20 +551,33 @@ set.seed(1997)
 impute <- preProcess(nlsy97, method=c("bagImpute")) # imputation using bagging (decision tree)
 predictors <- predict(impute, nlsy97)
 predictors <- predictors %>%
-  select(-starts_with("debt"),
-         -starts_with("student")) # removing imputed dependent variables
+  select(-starts_with("debt")) # removing imputed dependent variable
 
   # If probability of being married >= 50% then "Married", if < 50% then "Not Married"
   for (j in which(startsWith(colnames(predictors), "marital"))) {
     predictors[,j] <- ifelse(predictors[,j] >= 0.5, 1, 0)
     predictors[,j] <- as.character(predictors[,j])
     predictors[,j] <- ifelse(predictors[,j]=="1", "Married", "Not Married")
-    predictors[,j] <- factor(predictors[,j], levels=c("Married", "Not Married"))
+    predictors[,j] <- factor(predictors[,j], levels=c("Not Married", "Married"))
+  }
+
+  # Fixing nonsensical imputed values 
+  predictors$parent_income <- ifelse(predictors$parent_income < 0, 0, predictors$parent_income)
+  for (j in which(startsWith(colnames(predictors), "assets"))) {
+    predictors[,j] <- ifelse(predictors[,j] < 0, 0, predictors[,j])
+  }
+  for (j in which(startsWith(colnames(predictors), "parent_education"))) {
+    predictors[,j] <- round(predictors[,j])
+  }
+  for (j in which(startsWith(colnames(predictors), "educ"))) {
+    predictors[,j] <- round(predictors[,j])
+  }
+  for (j in which(startsWith(colnames(predictors), "num_children"))) {
+    predictors[,j] <- round(predictors[,j])
   }
 
 nlsy97 <- nlsy97 %>%
-  select(starts_with("debt"), # select unimputed dependent variables
-         starts_with("student")) %>%
+  select(starts_with("debt")) %>% # select unimputed dependent variable
   bind_cols(predictors) %>% # join in imputed independent variables and control variables
   relocate(id)
 
@@ -753,42 +587,29 @@ total_debt <- nlsy97 %>% # respondents with debt at at least one measurement int
            debt_25 > 0 |
            debt_30 > 0 |
            debt_35 > 0 |
-           debt_40 > 0) %>%
-  select(-starts_with("student_debt")) # only interested in total debt for RQ #1 and RQ #2
-total_debt_wide <- total_debt
-save(total_debt_wide, file="total_debt_wide.RData")
-
-student_debt <- nlsy97 %>% # respondents with student debt at at least one measurement interval
-  filter(student_debt_20 > 0 |
-           student_debt_25 > 0 |
-           student_debt_30 > 0 |
-           student_debt_35 > 0 |
-           student_debt_40 > 0) %>%
-  select(-starts_with("debt")) # only interested in student debt for RQ #3
-student_debt_wide <- student_debt
-save(student_debt_wide, file="student_debt_wide.RData")
+           debt_40 > 0)
 
 # Pivoting longer
 
   # Time variant control variables need to be separated, pivoted, and then joined back in
   # Function to separate and pivot time variant controls
-  # keyword = "age", "educ", "income", "assets", "marital_status", "num_children"
+  # keywords = "age", "educ", "income", "assets", "marital_status", "num_children"
   pivot_tvc <- function(keyword) {
     tvc <- select(nlsy97, id, starts_with(keyword))
     tvc <- tvc %>%
       pivot_longer(!id,
                    values_to=keyword,
                    names_to="time")
-    tvc$time[tvc$time==paste0(keyword, "_20")] <- 20
-    tvc$time[tvc$time==paste0(keyword, "_25")] <- 25
-    tvc$time[tvc$time==paste0(keyword, "_30")] <- 30
-    tvc$time[tvc$time==paste0(keyword, "_35")] <- 35
-    tvc$time[tvc$time==paste0(keyword, "_40")] <- 40
-    tvc$time[tvc$time==paste0(keyword, "20")] <- 20
-    tvc$time[tvc$time==paste0(keyword, "25")] <- 25
-    tvc$time[tvc$time==paste0(keyword, "30")] <- 30
-    tvc$time[tvc$time==paste0(keyword, "35")] <- 35
-    tvc$time[tvc$time==paste0(keyword, "40")] <- 40
+    tvc$time[tvc$time==paste0(keyword, "_20")] <- 0
+    tvc$time[tvc$time==paste0(keyword, "_25")] <- 1
+    tvc$time[tvc$time==paste0(keyword, "_30")] <- 2
+    tvc$time[tvc$time==paste0(keyword, "_35")] <- 3
+    tvc$time[tvc$time==paste0(keyword, "_40")] <- 4
+    tvc$time[tvc$time==paste0(keyword, "20")] <- 0
+    tvc$time[tvc$time==paste0(keyword, "25")] <- 1
+    tvc$time[tvc$time==paste0(keyword, "30")] <- 2
+    tvc$time[tvc$time==paste0(keyword, "35")] <- 3
+    tvc$time[tvc$time==paste0(keyword, "40")] <- 4
     return(tvc)
   }
   age <- pivot_tvc("age")
@@ -810,11 +631,11 @@ save(student_debt_wide, file="student_debt_wide.RData")
     pivot_longer(cols=starts_with("debt"),
                  values_to="debt",
                  names_to="time")
-  total_debt$time[total_debt$time=="debt_20"] <- 20
-  total_debt$time[total_debt$time=="debt_25"] <- 25
-  total_debt$time[total_debt$time=="debt_30"] <- 30
-  total_debt$time[total_debt$time=="debt_35"] <- 35
-  total_debt$time[total_debt$time=="debt_40"] <- 40
+  total_debt$time[total_debt$time=="debt_20"] <- 0
+  total_debt$time[total_debt$time=="debt_25"] <- 1
+  total_debt$time[total_debt$time=="debt_30"] <- 2
+  total_debt$time[total_debt$time=="debt_35"] <- 3
+  total_debt$time[total_debt$time=="debt_40"] <- 4
   
   total_debt <- total_debt %>% # joining in time variant controls
     inner_join(age, by=c("id", "time")) %>%
@@ -823,40 +644,31 @@ save(student_debt_wide, file="student_debt_wide.RData")
     inner_join(assets, by=c("id", "time")) %>%
     inner_join(marital_status, by=c("id", "time")) %>%
     inner_join(num_children, by=c("id", "time"))
+  total_debt$time <- as.numeric(total_debt$time)
   
   total_debt <- total_debt %>%
     relocate(id,
              debt)
   
-  # student_debt
-  student_debt <- student_debt %>%
-    select(-starts_with("age"), # removing time variant controls
-           -starts_with("educ"),
-           -starts_with("income"),
-           -starts_with("assets"),
-           -starts_with("marital_status"),
-           -starts_with("num_children"))
-  student_debt <- student_debt %>%
-    pivot_longer(cols=starts_with("student_debt"),
-                 values_to="debt",
-                 names_to="time")
-  student_debt$time[student_debt$time=="student_debt_20"] <- 20
-  student_debt$time[student_debt$time=="student_debt_25"] <- 25
-  student_debt$time[student_debt$time=="student_debt_30"] <- 30
-  student_debt$time[student_debt$time=="student_debt_35"] <- 35
-  student_debt$time[student_debt$time=="student_debt_40"] <- 40
+total_debt <- na.omit(total_debt) # removing respondent-measurements with NA values for debt (no other missing values due to imputation)
   
-  student_debt <- student_debt %>% # joining in time variant controls
-    inner_join(age, by=c("id", "time")) %>%
-    inner_join(educ, by=c("id", "time")) %>%
-    inner_join(income, by=c("id", "time")) %>%
-    inner_join(assets, by=c("id", "time")) %>%
-    inner_join(marital_status, by=c("id", "time")) %>%
-    inner_join(num_children, by=c("id", "time"))
+# weight
+weights <- read.table("Custom Weights.dat")
+total_debt <- total_debt %>%
+  inner_join(weights, by=c("id"="V1")) %>% # joining in weights
+  rename(weight = V2) %>%
+  mutate(weight = weight / sum(weight)) # standardizing weights
   
-  student_debt <- student_debt %>%
-    relocate(id,
-             debt)
+# Creating variables for model
   
+  # debt_logged (dependent variable)
+  total_debt$debt_logged <- ifelse(total_debt$debt == 0, 1, total_debt$debt) # giving $1 to respondents with $0 in debt so they're not dropped when taking log
+  total_debt$debt_logged <- log(total_debt$debt_logged)
+
+total_debt$time_sq <- total_debt$time^2 # quadratic growth term
+
+  # Indicator for having debt
+  total_debt$has_debt <- ifelse(total_debt$debt > 0, 1, 0) 
+  total_debt$has_debt <- factor(total_debt$has_debt, levels=c(0, 1))
+
 save(total_debt, file="total_debt.RData")
-save(student_debt, file="student_debt.RData")
