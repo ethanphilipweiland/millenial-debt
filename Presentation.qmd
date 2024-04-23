@@ -638,4 +638,4 @@ gamma11 <- coefficients_table[which(rownames(coefficients_table)=="time:parent_n
 
 ## Thank You!
 
-https://github.com/ethanphilipweiland/millennial-debt
+<https://github.com/ethanphilipweiland/millennial-debt>
