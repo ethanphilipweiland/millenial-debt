@@ -120,7 +120,8 @@ stargazer(table,
                        ")"),
           font.size="small",
           notes=c("Source: NLSY97. Among respondents reporting debt at least",
-                  "once. Adjusted for survey design and inflation."))
+                  "once. Adjusted for survey design and inflation."),
+          notes.append=FALSE)
 ```
 
 To begin, Table 1 lists the inferences of total debt for Millennials at different ages. Since this sample was restricted to respondents reporting debt at least once, these inferences are population estimates of debt at different ages for Millennials who will hold debt at some point. These inferences are made accounting for clustering in the multistage sampling design. Average debt starts off relatively low at age 20, equal to \$`r round(table[which(table$Age==20), which(colnames(table)=="Mean Debt")], 2)`. This is unsurprising as the typical American is still enrolled in schooling or just beginning their labor market career. Many have not made a major purchase nor even have a credit card. Average debt then increases until age 30, where it stays relatively constant. This provides evidence for quadratic growth in total debt over time. The population estimate for standard deviation in debt also follows this pattern. The most recent estimate for total (non-housing) debt for Millennials is \$34,776.81.
@@ -390,6 +391,8 @@ mod_stats <- tribble(~stat, ~ model2,
                      "Number of Groups (Individuals)", N,
                      "Number of Observations (Measurements)", n,
                      "Deviance", round(deviance(model2, REML=F), 2))
+p <- list()
+p[[1]] <- summary(model2_lmer)$coefficients[,5]
 
 stargazer(model2,
           type="latex",
@@ -415,7 +418,8 @@ stargazer(model2,
                              "$\\beta_{9}$ Has Debt",
                              "$\\gamma_{11}$ Time:Parent Net Worth"),
           digits=2,
-          p=NA, # don't want p-values
+          p=p, # p-values from lmerTest
+          star.cutoffs = c(.05, .01, .001),
           omit.table.layout="s",
           add.lines=lapply(1:nrow(mod_stats), function(i) unlist(mod_stats[i, ])),
           notes=c("Source: NLSY97"))
