@@ -28,3 +28,6 @@ To begin, download the /Data Cleaning/ folder. Open `R` and set /Data Cleaning/N
 ## Acknowledgements
 Snijders, Tom A. B., and Roel J. Bosker. [1999] 2012. Multilevel Analysis: An Introduction to Basic
 and Advanced Modeling. 2nd ed. Thousand Oaks, California: SAGE.
+
+## License
+See LICENSE for licensing details for this repository. 
